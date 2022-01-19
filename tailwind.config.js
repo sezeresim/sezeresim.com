@@ -1,14 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { fontFamily } = require('tailwindcss/defaultTheme');
-
-function withOpacity(variableName) {
-  return ({ opacityValue }) => {
-    if (opacityValue !== undefined) {
-      return `rgba(var(${variableName}), ${opacityValue})`;
-    }
-    return `rgb(var(${variableName}))`;
-  };
-}
+const { fontFamily } = require('tailwindcss/defaultTheme')
 
 /** @type {import("@types/tailwindcss/tailwind-config").TailwindConfig } */
 module.exports = {
@@ -16,23 +7,13 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ['Inter', ...fontFamily.sans],
+        primary: ['Heebo', ...fontFamily.sans],
       },
       colors: {
         primary: {
-          // Customize it on globals.css :root
-          50: withOpacity('--tw-clr-primary-50'),
-          100: withOpacity('--tw-clr-primary-100'),
-          200: withOpacity('--tw-clr-primary-200'),
-          300: withOpacity('--tw-clr-primary-300'),
-          400: withOpacity('--tw-clr-primary-400'),
-          500: withOpacity('--tw-clr-primary-500'),
-          600: withOpacity('--tw-clr-primary-600'),
-          700: withOpacity('--tw-clr-primary-700'),
-          800: withOpacity('--tw-clr-primary-800'),
-          900: withOpacity('--tw-clr-primary-900'),
+          DEFAULT: '#21243D',
         },
-        dark: '#222222',
+        'light-blue': '#EDF7FA',
       },
       keyframes: {
         flicker: {
@@ -53,4 +34,4 @@ module.exports = {
     },
   },
   plugins: [require('@tailwindcss/forms')],
-};
+}
