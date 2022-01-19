@@ -4,10 +4,9 @@ import { useRouter } from 'next/router'
 import { openGraph } from '@/lib/helper'
 
 const defaultMeta = {
-  title: 'Next.js + Tailwind CSS + TypeScript Starter',
-  siteName: 'Next.js + Tailwind CSS + TypeScript Starter',
-  description:
-    'A starter for Next.js, Tailwind CSS, and TypeScript with Absolute Import, Seo, Link component, pre-configured with Husky',
+  title: 'Sezer Esim',
+  siteName: 'Sezer Esim',
+  description: 'Sezer Esim',
   url: 'www.example.com',
   type: 'website',
   robots: 'follow, index',
