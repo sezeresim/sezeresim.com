@@ -11,7 +11,7 @@ const links = [{ href: '/blog', label: 'Blog' }]
 export default function Header() {
   const { isDarkMode, darkModeToogle } = useDarkMode()
   return (
-    <header className='py-10 sticky top-0 z-50'>
+    <header className='py-10'>
       <div className='flex h-14 items-center justify-between layout'>
         <UnstyledLink
           href='/'
