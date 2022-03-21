@@ -19,7 +19,7 @@ const Footer = () => {
   ]
   return (
     <footer>
-      <div className='bg-white flex gap-8 h-28 items-center justify-center'>
+      <div className='bg-white flex gap-8 h-28 items-center justify-center dark:bg-gray-900 dark:text-gray-100'>
         {socialAccounts.map(({ name, url }, key) => (
           <UnstyledLink key={key} href={url}>
             {name}
