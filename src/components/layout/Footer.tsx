@@ -5,6 +5,10 @@ import UnstyledLink from '../links/UnstyledLink'
 const Footer = () => {
   const socialAccounts = [
     {
+      name: 'Linkedin',
+      url: 'https://www.linkedin.com/in/sezeresim/',
+    },
+    {
       name: 'Github',
       url: 'www.github.com/sezeresim',
     },
