@@ -7,7 +7,7 @@ export default function HomePage() {
     <>
       <Seo templateTitle='Home' />
       <main className='min-h-main'>
-        <div className='flex flex-col justify-center layout mt-8 md:flex-row md:h-96 md:items-center md:justify-between'>
+        <div className='flex flex-col justify-center layout md:flex-row md:h-96 md:items-center md:justify-between'>
           <div className='order-1 w-full md:mr-28'>
             <div className='mb-10'>
               <h1 className='font-medium mt-8 text-3xl text-justify text-primary md:leading-snug md:text-5xl dark:text-gray-100'>
