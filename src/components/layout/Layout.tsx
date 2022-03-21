@@ -1,10 +1,14 @@
 import * as React from 'react'
 
+import Footer from './Footer'
+import Header from './Header'
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      {/*     <Header /> */}
+    <div className='bg-white dark:bg-gray-900'>
+      <Header />
       {children}
-    </>
+      <Footer />
+    </div>
   )
 }
