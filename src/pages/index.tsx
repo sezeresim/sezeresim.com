@@ -9,17 +9,15 @@ export default function HomePage() {
       <main className='min-h-main'>
         <div className='flex flex-col justify-center layout md:flex-row md:h-96 md:items-center md:justify-between'>
           <div className='order-1 w-full md:mr-28'>
-            <div className='mb-10'>
+            <div className='mb-8'>
               <h1 className='font-medium mt-8 text-3xl text-justify text-primary md:leading-snug md:text-5xl dark:text-gray-100'>
-                Hi,<span className='text-blue-500 underline'>I'm Sezer</span>{' '}
+                <span className='text-blue-500 underline'>Sezer Esim</span>
                 <br />
                 Software Engineer
               </h1>
             </div>
             <p className='mb-9 text-justify text-primary dark:text-gray-400'>
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-              amet sint. Velit officia consequat duis enim velit mollit.
-              Exercitation veniam consequat sunt nostrud amet.
+              An engineer who continues to learn and improve.
             </p>
           </div>
         </div>
