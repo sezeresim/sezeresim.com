@@ -8,6 +8,7 @@ const Projects = () => {
       description: `This is a android application for managing your daily tasks.Also it is a pomodoro timer.`,
       image: '/images/pomodoro.webp',
       link: 'https://play.google.com/store/apps/details?id=com.pomodorotracking',
+      githubLink: 'https://github.com/sezeresim/domates-rn',
     },
   ]
 
@@ -29,6 +30,7 @@ const Projects = () => {
                 image={el.image}
                 name={el.name}
                 description={el.description}
+                githubLink={el.githubLink}
               />
             ))}
           </div>

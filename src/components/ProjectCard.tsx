@@ -9,9 +9,16 @@ interface IProjectCard {
   image: string
   name: string
   description: string
+  githubLink: string
 }
 
-const ProjectCard: FC<IProjectCard> = ({ link, image, name, description }) => {
+const ProjectCard: FC<IProjectCard> = ({
+  link,
+  image,
+  name,
+  description,
+  githubLink,
+}) => {
   return (
     <div className='bg-gray md md:w-1/2'>
       <div className='bg-white overflow-hidden rounded-md shadow-md'>
@@ -24,7 +31,7 @@ const ProjectCard: FC<IProjectCard> = ({ link, image, name, description }) => {
           <div className='font-bold mb-2 text-xl'>{name}</div>
           <div className='text-base text-gray-900'>{description}</div>
           <div className='border-gray-200 border-t-2 flex gap-2 mt-2 pt-2'>
-            <PrimaryLink href={link}>Github</PrimaryLink>
+            <PrimaryLink href={githubLink}>Github</PrimaryLink>
             <PrimaryLink href={link}>Play Store</PrimaryLink>
           </div>
         </div>
