@@ -6,7 +6,10 @@ import UnstyledLink from '@/components/links/UnstyledLink'
 
 import { Moon, Sun } from '../icons'
 
-const links = [{ href: '/blog', label: 'Blog' }]
+const links = [
+  { href: '/blog', label: 'Blog' },
+  { href: '/projects', label: 'Projects' },
+]
 
 export default function Header() {
   const { isDarkMode, darkModeToogle } = useDarkMode()
