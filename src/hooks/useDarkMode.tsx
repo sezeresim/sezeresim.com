@@ -18,7 +18,7 @@ function useDarkMode(): UseDarkModeOutput {
     root.classList.add(theme)
 
     if (typeof window !== 'undefined') {
-      localStorage.setItem('theme', theme)
+      localStorage.setItem('theme', theme || 'light')
     }
   }, [theme])
 

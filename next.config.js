@@ -7,7 +7,7 @@ module.exports = {
   reactStrictMode: true,
 
   images: {
-    domains: ['media-exp1.licdn.com'],
+    domains: ['media-exp1.licdn.com', 'cdn-images-1.medium.com', 'medium.com'],
   },
 
   // SVGR
