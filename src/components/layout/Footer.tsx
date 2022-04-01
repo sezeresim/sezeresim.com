@@ -10,15 +10,15 @@ const Footer = () => {
     },
     {
       name: 'Github',
-      url: 'www.github.com/sezeresim',
+      url: 'https://www.github.com/sezeresim',
     },
     {
       name: 'Twitter',
-      url: 'www.twitter.com/sezereesim',
+      url: 'https://www.twitter.com/sezereesim',
     },
     {
       name: 'Instagram',
-      url: 'www.instagram.com/sezereesim',
+      url: 'https://www.instagram.com/sezereesim',
     },
   ]
   return (
