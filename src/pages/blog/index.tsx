@@ -1,44 +1,10 @@
-import React, { useEffect, useState } from 'react'
-
 import BlogCard from '@/components/BlogCard'
 import Seo from '@/components/Seo'
 
-interface IPost {
-  title?: string
-  description?: string
-  link?: string
-  thumbnail?: string
-  guid?: string
-  author?: string
-  pubDate?: string
-}
+import { IPost } from '@/interfaces'
 
-const BlogPost = () => {
-  const [posts, setPosts] = useState<IPost[]>([])
-  useEffect(() => {
-    fetch(
-      'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@sezeresim',
-      {
-        method: 'GET',
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.items)
-        const results = data.items.map((item: any): IPost => {
-          return {
-            title: item.title,
-            description: item.description,
-            thumbnail: item.thumbnail,
-            guid: item.guid,
-            link: item.link,
-            author: item.author,
-            pubDate: item.pubDate,
-          }
-        })
-        setPosts(results)
-      })
-  }, [])
+const Blog = ({ posts }: { posts: IPost[] }) => {
+  console.log(posts)
   return (
     <>
       <Seo templateTitle='Blogs' />
@@ -55,7 +21,7 @@ const BlogPost = () => {
                 key={post.guid}
                 title={post.title}
                 thumbnail={post.thumbnail}
-                link={post.link}
+                id={post.id}
                 author={post.author}
                 pubDate={post.pubDate}
               />
@@ -67,4 +33,27 @@ const BlogPost = () => {
   )
 }
 
-export default BlogPost
+export async function getStaticProps() {
+  const res = await fetch(
+    'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@sezeresim'
+  )
+  let results = await res.json()
+  console.log(results)
+  results = results.items.map(
+    (item: any): IPost => ({
+      title: item.title,
+      description: item.description,
+      thumbnail: item.thumbnail,
+      author: item.author,
+      pubDate: item.pubDate,
+      id: item.guid.split('https://medium.com/p/')[1],
+    })
+  )
+  return {
+    props: {
+      posts: results,
+    },
+  }
+}
+
+export default Blog
