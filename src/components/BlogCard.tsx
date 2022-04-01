@@ -1,18 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
+import Link from 'next/link'
 import { FC } from 'react'
 
-import UnstyledLink from '@/components/links/UnstyledLink'
+import { IPost } from '@/interfaces'
 
-interface IProjectCard {
-  link?: string
-  thumbnail?: string
-  title?: string
-  author?: string
-  pubDate?: string
-}
-
-const BlogCard: FC<IProjectCard> = ({
-  link = '',
+const BlogCard: FC<IPost> = ({
+  id = '',
   thumbnail = '',
   title,
   author = '',
@@ -25,9 +18,11 @@ const BlogCard: FC<IProjectCard> = ({
           <p className='text-xl'>{author}</p>
           <p>{pubDate}</p>
         </div>
-        <UnstyledLink href={link}>
-          {thumbnail && <img alt='title' src={thumbnail} height='160px' />}
-        </UnstyledLink>
+        <Link href='/blog/[slug]' as={`/blog/${id}`}>
+          <a>
+            {thumbnail && <img alt='title' src={thumbnail} height='160px' />}
+          </a>
+        </Link>
         <div className='px-6 py-6'>
           <div className='font-bold mb-2 text-xl'>{title}</div>
         </div>
