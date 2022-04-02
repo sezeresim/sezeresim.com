@@ -35,4 +35,4 @@ module.exports = {
 
   // https://nextjs.org/docs/testing#manual-setup-2
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-};
+}

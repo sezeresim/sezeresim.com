@@ -44,6 +44,16 @@
     @apply mx-auto w-8/12;
   }
 
+  @media screen and (max-width: 768px) {
+    .layout {
+      @apply w-10/12;
+    }
+  }
+  @media screen and (max-width: 640px) {
+    .layout {
+      @apply w-11/12;
+    }
+  }
   .bg-dark a.custom-link {
     @apply border-gray-200 hover:border-gray-200/0;
   }
