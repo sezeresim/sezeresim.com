@@ -4,7 +4,6 @@ import Seo from '@/components/Seo'
 import { IPost } from '@/interfaces'
 
 const Blog = ({ posts }: { posts: IPost[] }) => {
-  console.log(posts)
   return (
     <>
       <Seo templateTitle='Blogs' />
@@ -15,10 +14,10 @@ const Blog = ({ posts }: { posts: IPost[] }) => {
           </h1>
         </div>
         <div className='container py-12'>
-          <div className='gap-y-6 grid grid-cols-1'>
-            {posts?.map((post: any) => (
+          <div className='gap-x-2 gap-y-6 grid grid-cols-1 md:grid-cols-2'>
+            {posts?.map((post: any, index: number) => (
               <BlogCard
-                key={post.guid}
+                key={index}
                 title={post.title}
                 thumbnail={post.thumbnail}
                 id={post.id}
@@ -38,7 +37,6 @@ export async function getStaticProps() {
     'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@sezeresim'
   )
   let results = await res.json()
-  console.log(results)
   results = results.items.map(
     (item: any): IPost => ({
       title: item.title,

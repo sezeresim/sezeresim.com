@@ -5,7 +5,6 @@ import Seo from '@/components/Seo'
 import { IPost } from '@/interfaces'
 
 const BlogPost = ({ post }: { post: any }) => {
-  console.log(post)
   return (
     <>
       <Seo templateTitle='Blogs' />
@@ -64,7 +63,6 @@ export async function getStaticProps({ params }: { params: any }) {
     )
     .find((el: any) => el.id === params.id)
 
-  console.log(params)
   return {
     props: {
       post,

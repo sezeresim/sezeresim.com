@@ -20,11 +20,21 @@ const BlogCard: FC<IPost> = ({
         </div>
         <Link href='/blog/[slug]' as={`/blog/${id}`}>
           <a>
-            {thumbnail && <img alt='title' src={thumbnail} height='160px' />}
+            {thumbnail && (
+              <img
+                alt='title'
+                src={thumbnail}
+                className='duration-300 h-40 min-w-full object-cover transition-all hover:object-scale-down'
+                loading='lazy'
+                onError={(e: any) => {
+                  e.target.src = '/images/no-image-available.png'
+                }}
+              />
+            )}
           </a>
         </Link>
-        <div className='px-6 py-6'>
-          <div className='font-bold mb-2 text-xl'>{title}</div>
+        <div className='h-16 px-2 py-3'>
+          <div className='font-bold mb-2 text-m'>{title}</div>
         </div>
       </div>
     </div>
