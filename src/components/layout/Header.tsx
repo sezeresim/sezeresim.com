@@ -1,10 +1,8 @@
 import * as React from 'react'
 
-import useDarkMode from '@/hooks/useDarkMode'
-
 import UnstyledLink from '@/components/links/UnstyledLink'
 
-import { Moon, Sun } from '../icons'
+import ThemeSwitch from '../ThemeSwitch'
 
 const links = [
   { href: '/blog', label: 'Blog' },
@@ -12,13 +10,12 @@ const links = [
 ]
 
 export default function Header() {
-  const { isDarkMode, darkModeToogle } = useDarkMode()
   return (
     <header className='py-10'>
       <div className='flex h-14 items-center justify-between layout'>
         <UnstyledLink
           href='/'
-          className='font-bold dark:text-gray-100 hover:text-gray-600'
+          className='font-bold dark:text-gray-100 hover:dark:text-blue-500 hover:text-blue-500'
         >
           Home
         </UnstyledLink>
@@ -28,19 +25,14 @@ export default function Header() {
               <li key={`${href}${label}`} className='inline-flex items-center'>
                 <UnstyledLink
                   href={href}
-                  className='dark:text-gray-100 hover:text-gray-600'
+                  className='dark:text-gray-100 hover:dark:text-blue-500 hover:text-blue-500'
                 >
                   {label}
                 </UnstyledLink>
               </li>
             ))}
             <li className='inline-flex items-center'>
-              <button
-                onClick={darkModeToogle}
-                className='text-2xl dark:text-gray-100'
-              >
-                {isDarkMode ? <Sun /> : <Moon />}
-              </button>
+              <ThemeSwitch />
             </li>
           </ul>
         </nav>

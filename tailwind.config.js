@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ['Heebo', ...fontFamily.sans],
+        primary: ['JetBrains Mono', ...fontFamily.sans],
       },
       colors: {
         primary: {
