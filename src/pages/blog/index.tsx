@@ -2,6 +2,16 @@ import BlogCard from '@/components/BlogCard'
 import Seo from '@/components/Seo'
 
 import { IPost } from '@/interfaces'
+import { getPosts } from '@/services/apis'
+
+export async function getStaticProps() {
+  const results = await getPosts()
+  return {
+    props: {
+      posts: results,
+    },
+  }
+}
 
 const Blog = ({ posts }: { posts: IPost[] }) => {
   return (
@@ -30,28 +40,6 @@ const Blog = ({ posts }: { posts: IPost[] }) => {
       </div>
     </>
   )
-}
-
-export async function getStaticProps() {
-  const res = await fetch(
-    'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@sezeresim'
-  )
-  let results = await res.json()
-  results = results.items.map(
-    (item: any): IPost => ({
-      title: item.title,
-      description: item.description,
-      thumbnail: item.thumbnail,
-      author: item.author,
-      pubDate: item.pubDate,
-      id: item.guid.split('https://medium.com/p/')[1],
-    })
-  )
-  return {
-    props: {
-      posts: results,
-    },
-  }
 }
 
 export default Blog

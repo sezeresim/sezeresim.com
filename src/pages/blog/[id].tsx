@@ -2,7 +2,29 @@ import React from 'react'
 
 import Seo from '@/components/Seo'
 
-import { IPost } from '@/interfaces'
+import { getPostById, getPosts } from '@/services/apis'
+
+export async function getStaticPaths() {
+  const results = await getPosts()
+  const paths = results.map((el: any) => ({
+    params: {
+      id: el.id,
+    },
+  }))
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
+export async function getStaticProps({ params }: { params: any }) {
+  const post = await getPostById(params.id)
+  return {
+    props: {
+      post,
+    },
+  }
+}
 
 const BlogPost = ({ post }: { post: any }) => {
   return (
@@ -27,47 +49,6 @@ const BlogPost = ({ post }: { post: any }) => {
       </div>
     </>
   )
-}
-export async function getStaticPaths() {
-  const res = await fetch(
-    'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@sezeresim'
-  )
-  const results = await res.json()
-  const paths = results.items.map((el: any) => ({
-    params: {
-      id: el.guid.split('https://medium.com/p/')[1],
-    },
-  }))
-
-  return {
-    paths,
-    fallback: false,
-  }
-}
-
-export async function getStaticProps({ params }: { params: any }) {
-  const res = await fetch(
-    'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@sezeresim'
-  )
-  const results = await res.json()
-  const post = results.items
-    .map(
-      (item: any): IPost => ({
-        title: item.title,
-        description: item.description,
-        thumbnail: item.thumbnail,
-        author: item.author,
-        pubDate: item.pubDate,
-        id: item.guid.split('https://medium.com/p/')[1],
-      })
-    )
-    .find((el: any) => el.id === params.id)
-
-  return {
-    props: {
-      post,
-    },
-  }
 }
 
 export default BlogPost
