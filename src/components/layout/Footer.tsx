@@ -1,6 +1,6 @@
 import React from 'react'
 
-import UnstyledLink from '../links/UnstyledLink'
+import UnstyledLink from '../ui/links/UnstyledLink'
 
 const Footer = () => {
   const socialAccounts = [
