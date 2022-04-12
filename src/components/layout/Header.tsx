@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import UnstyledLink from '@/components/links/UnstyledLink'
+import UnstyledLink from '@/components/ui/links/UnstyledLink'
 
 import ThemeSwitch from '../ThemeSwitch'
 

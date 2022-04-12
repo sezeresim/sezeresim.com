@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { FC } from 'react'
 
-import PrimaryLink from '@/components/links/PrimaryLink'
-import UnstyledLink from '@/components/links/UnstyledLink'
+import PrimaryLink from '@/components/ui/links/PrimaryLink'
+import UnstyledLink from '@/components/ui/links/UnstyledLink'
 
 interface IProjectCard {
   link: string
