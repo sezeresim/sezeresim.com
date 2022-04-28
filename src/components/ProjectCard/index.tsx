@@ -5,11 +5,11 @@ import PrimaryLink from '@/components/ui/links/PrimaryLink'
 import UnstyledLink from '@/components/ui/links/UnstyledLink'
 
 interface IProjectCard {
-  link: string
   image: string
   name: string
   description: string
   githubLink: string
+  link: string
 }
 
 const ProjectCard: FC<IProjectCard> = ({
@@ -32,7 +32,7 @@ const ProjectCard: FC<IProjectCard> = ({
           <div className='h-20 text-base text-gray-900'>{description}</div>
           <div className='border-gray-200 border-t-2 flex gap-2 mt-2 pt-2'>
             <PrimaryLink href={githubLink}>Github</PrimaryLink>
-            <PrimaryLink href={link}>Play Store</PrimaryLink>
+            <PrimaryLink href={link}>Check</PrimaryLink>
           </div>
         </div>
       </div>
