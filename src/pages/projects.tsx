@@ -30,7 +30,7 @@ const Projects = () => {
           </h1>
         </div>
         <div className='container py-12'>
-          <div className='flex flex-wrap'>
+          <div className='gap-2 grid grid-cols-1 md:grid-cols-2'>
             {projects.map((el) => (
               <ProjectCard
                 key={el.id}
