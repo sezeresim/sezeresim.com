@@ -10,6 +10,14 @@ const Projects = () => {
       link: 'https://play.google.com/store/apps/details?id=com.pomodorotracking',
       githubLink: 'https://github.com/sezeresim/domates-rn',
     },
+    {
+      id: 'memoryGame',
+      name: 'Memory Game',
+      description: `This is a memory game.`,
+      image: '/images/memoryGame.png',
+      link: 'https://matching-game-five.vercel.app/',
+      githubLink: 'https://github.com/sezeresim/matching-game-react',
+    },
   ]
 
   return (
