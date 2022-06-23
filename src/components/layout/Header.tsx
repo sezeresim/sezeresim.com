@@ -11,7 +11,7 @@ const links = [
 
 export default function Header() {
   return (
-    <header className='py-10'>
+    <header className='flex h-40 items-center'>
       <div className='flex h-14 items-center justify-between layout'>
         <UnstyledLink
           href='/'
