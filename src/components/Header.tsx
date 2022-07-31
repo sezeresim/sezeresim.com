@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import UnstyledLink from '@/components/ui/links/UnstyledLink'
 
-import ThemeSwitch from '../ThemeSwitch'
+import ThemeSwitch from './ThemeSwitch'
 
 const links = [
   { href: '/blog', label: 'Blog' },
@@ -11,8 +11,8 @@ const links = [
 
 export default function Header() {
   return (
-    <header className='flex h-40 items-center'>
-      <div className='flex h-14 items-center justify-between layout'>
+    <header className='flex h-20 items-center'>
+      <div className='flex items-center justify-between layout'>
         <UnstyledLink
           href='/'
           className='font-bold dark:text-gray-100 hover:dark:text-blue-500 hover:text-blue-500'

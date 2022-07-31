@@ -3,11 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+  .min-h-main {
+    min-height: calc(100vh - theme(spacing.48));
+  }
+
   .cursor-newtab {
     cursor: url('/images/new-tab.png') 10 10, pointer;
   }
 
-  /* #region  /**=========== Typography =========== */
   .h0 {
     @apply font-bold font-primary text-3xl md:text-5xl;
   }
@@ -36,12 +39,10 @@
   .p {
     @apply font-primary text-sm md:text-base;
   }
-  /* #endregion  /**======== Typography =========== */
 
   .layout {
-    /* 1152px */
     max-width: 1152px;
-    @apply mx-auto w-8/12;
+    @apply mx-auto w-10/12;
   }
 
   @media screen and (max-width: 768px) {
@@ -56,31 +57,5 @@
   }
   .bg-dark a.custom-link {
     @apply border-gray-200 hover:border-gray-200/0;
-  }
-
-  /* Class to adjust with sticky footer */
-  .min-h-main {
-    @apply min-h-[calc(100vh-160px)];
-  }
-}
-
-@layer utilities {
-  .animated-underline {
-    background-image: linear-gradient(#33333300, #33333300),
-      linear-gradient(to right, var(--clr-primary-400), var(--clr-primary-500));
-    background-size: 100% 2px, 0 2px;
-    background-position: 100% 100%, 0 100%;
-    background-repeat: no-repeat;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .animated-underline {
-      transition: 0.3s ease;
-      transition-property: background-size, color, background-color,
-        border-color;
-    }
-  }
-  .animated-underline:hover,
-  .animated-underline:focus-visible {
-    background-size: 0 2px, 100% 2px;
   }
 }
