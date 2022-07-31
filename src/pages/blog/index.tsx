@@ -17,7 +17,7 @@ const Blog = ({ posts }: { posts: IPost[] }) => {
   return (
     <>
       <Seo templateTitle='Blogs' />
-      <div className='divide-gray-200 divide-y dark:divide-gray-700'>
+      <div className='divide-gray-200 divide-y min-h-main dark:divide-gray-700'>
         <div className='pb-8 pt-6 space-y-2 md:space-y-5'>
           <h1 className='font-extrabold leading-9 text-3xl text-gray-900 tracking-tight sm:leading-10 sm:text-4xl md:leading-14 md:text-6xl dark:text-gray-100'>
             Blogs
