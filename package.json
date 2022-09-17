@@ -23,7 +23,7 @@
     "push-release": "git push --follow-tags origin main",
     "postbuild": "next-sitemap",
     "prepare": "husky install",
-    "icon": "npx @svgr/cli -d src/components/Icons --ignore-existing --icon --typescript public/icons"
+    "icon": "npx @svgr/cli -d src/components/Icon --ignore-existing --icon --typescript public/icons"
   },
   "dependencies": {
     "@mdx-js/loader": "^2.1.3",
