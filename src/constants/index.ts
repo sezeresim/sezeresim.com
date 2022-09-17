@@ -6,7 +6,7 @@ export type ISocialAccount = {
 export const socialAccounts: ISocialAccount[] = [
   {
     name: 'Linkedin',
-    url: 'https://www.linkedin.com/in/sezeresim/',
+    url: 'https://www.linkedin.com/in/sezeresim',
   },
   {
     name: 'Github',
@@ -14,11 +14,11 @@ export const socialAccounts: ISocialAccount[] = [
   },
   {
     name: 'Twitter',
-    url: 'https://www.twitter.com/sezereesim',
+    url: 'https://twitter.com/sezeeresim',
   },
   {
     name: 'Instagram',
-    url: 'https://www.instagram.com/sezereesim',
+    url: 'https://www.instagram.com/sezeeresim',
   },
 ]
 

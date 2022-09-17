@@ -18,7 +18,6 @@ export const getPosts = async () => {
     )
     return results
   } catch (error) {
-    console.log('getPosts ~ error', error)
     return []
   }
 }
@@ -28,7 +27,6 @@ export const getPostById = async (id: string | number) => {
     const results = await getPosts()
     return results.find((el: any) => el.id === id)
   } catch (error) {
-    console.log('getPostById ~ error', error)
     throw new Error("Can't get post by id")
   }
 }
