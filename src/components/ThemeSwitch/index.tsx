@@ -1,21 +1,25 @@
+import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
-
-import useDarkMode from '@/hooks/useDarkMode'
 
 import { Moon, Sun } from '../Icons'
 
 const ThemeSwitch = () => {
-  const { isDarkMode, darkModeToogle } = useDarkMode()
   const [mounted, setMounted] = useState(false)
+  const { theme, setTheme } = useTheme()
 
   useEffect(() => setMounted(true), [])
 
+  if (!mounted) {
+    return null
+  }
+  const isDark = theme === 'dark'
+
   return (
     <button
-      onClick={darkModeToogle}
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       className='duration-200 text-2xl transition-all dark:text-gray-100 hover:dark:text-blue-500 hover:text-blue-500'
     >
-      {isDarkMode && mounted ? <Sun /> : <Moon />}
+      {isDark ? <Sun /> : <Moon />}
     </button>
   )
 }

@@ -5,7 +5,7 @@ import UnstyledLink from '@/components/Links/UnstyledLink'
 import ThemeSwitch from './ThemeSwitch'
 
 const links = [
-  { href: '/blog', label: 'Blog' },
+  { href: '/posts', label: 'Posts' },
   { href: '/projects', label: 'Projects' },
 ]
 
