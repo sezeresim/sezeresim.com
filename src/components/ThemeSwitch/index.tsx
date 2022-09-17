@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import useDarkMode from '@/hooks/useDarkMode'
 
-import { Moon, Sun } from '../icons'
+import { Moon, Sun } from '../Icons'
 
 const ThemeSwitch = () => {
   const { isDarkMode, darkModeToogle } = useDarkMode()

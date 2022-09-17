@@ -20,7 +20,7 @@
     "push-release": "git push --follow-tags origin main",
     "postbuild": "next-sitemap",
     "prepare": "husky install",
-    "icon": "npx @svgr/cli -d src/components/icons --ignore-existing --icon --typescript public/icons"
+    "icon": "npx @svgr/cli -d src/components/Icons --ignore-existing --icon --typescript public/icons"
   },
   "dependencies": {
     "clsx": "^1.2.1",

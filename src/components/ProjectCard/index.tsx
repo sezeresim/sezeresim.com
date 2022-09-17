@@ -1,8 +1,7 @@
 import Image from 'next/image'
 import { FC } from 'react'
 
-import PrimaryLink from '@/components/ui/links/PrimaryLink'
-import UnstyledLink from '@/components/ui/links/UnstyledLink'
+import UnstyledLink from '@/components/Links/UnstyledLink'
 
 interface IProjectCard {
   image: string
@@ -31,8 +30,8 @@ const ProjectCard: FC<IProjectCard> = ({
           <div className='font-bold mb-2 text-xl'>{name}</div>
           <div className='h-20 text-base text-gray-900'>{description}</div>
           <div className='border-gray-200 border-t-2 flex gap-2 mt-2 pt-2'>
-            <PrimaryLink href={githubLink}>Github</PrimaryLink>
-            <PrimaryLink href={link}>Check</PrimaryLink>
+            <UnstyledLink href={githubLink}>Github</UnstyledLink>
+            <UnstyledLink href={link}>Check</UnstyledLink>
           </div>
         </div>
       </div>
