@@ -13,7 +13,7 @@ const Transition = (props: Props) => {
         animate={{ y: 10, opacity: 1 }}
         exit={{ y: -10, opacity: 0 }}
         transition={{
-          delay: 0.5,
+          delay: 0.2,
           x: { duration: 1 },
           default: { ease: 'linear' },
         }}
