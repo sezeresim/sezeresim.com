@@ -21,7 +21,7 @@
     "format:check": "prettier -c .",
     "release": "standard-version",
     "push-release": "git push --follow-tags origin main",
-    "postbuild": "next-sitemap",
+    "postbuild": "next-sitemap --config next-sitemap.js",
     "prepare": "husky install",
     "icon": "npx @svgr/cli -d src/components/Icon --ignore-existing --icon --typescript public/icons"
   },
