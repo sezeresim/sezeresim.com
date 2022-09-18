@@ -1,11 +1,12 @@
 import ProjectCard from '@/components/ProjectCard'
 import Seo from '@/components/Seo'
+import Transition from '@/components/Transition'
 
 import { projects } from '@/constants'
 
 const Projects = () => {
   return (
-    <>
+    <Transition>
       <Seo templateTitle='Projects' />
       <div className='divide-gray-200 divide-y min-h-main dark:divide-gray-700'>
         <div className='pb-8 pt-6 space-y-2 md:space-y-5'>
@@ -28,7 +29,7 @@ const Projects = () => {
           </div>
         </div>
       </div>
-    </>
+    </Transition>
   )
 }
 

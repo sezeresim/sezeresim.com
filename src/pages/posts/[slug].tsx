@@ -14,6 +14,8 @@ import rehypePrism from 'rehype-prism-plus'
 import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
 
+import Transition from '@/components/Transition'
+
 import { PostType } from '../../types/post'
 import { postFilePaths, POSTS_PATH } from '../../utils/mdxUtils'
 
@@ -35,24 +37,26 @@ type PostPageProps = {
 const PostPage = ({ source, frontMatter }: PostPageProps): JSX.Element => {
   return (
     </* customMeta={customMeta} */>
-      <div className='min-h-main dark:divide-gray-700'>
-        <div className='pb-8 pt-6 space-y-2 md:space-y-5'>
-          <h1 className='font-extrabold leading-9 text-3xl text-gray-900 tracking-tight sm:leading-10 sm:text-4xl md:leading-14 md:text-6xl dark:text-gray-100'>
-            {frontMatter.title}
-          </h1>{' '}
-          <p className='mb-10 text-gray-500 text-sm dark:text-gray-400'>
-            {frontMatter.author as string}
-          </p>
-          <p className='mb-10 text-gray-500 text-sm dark:text-gray-400'>
-            {format(parseISO(frontMatter.date as string), 'MMMM dd, yyyy')}
-          </p>{' '}
-        </div>
-        <article>
-          <div className='prose dark:prose-dark'>
-            <MDXRemote {...source} components={components} />
+      <Transition>
+        <div className='min-h-main dark:divide-gray-700'>
+          <div className='pb-8 pt-6 space-y-2 md:space-y-5'>
+            <h1 className='font-extrabold leading-9 text-3xl text-gray-900 tracking-tight sm:leading-10 sm:text-4xl md:leading-14 md:text-6xl dark:text-gray-100'>
+              {frontMatter.title}
+            </h1>{' '}
+            <p className='mb-10 text-gray-500 text-sm dark:text-gray-400'>
+              {frontMatter.author as string}
+            </p>
+            <p className='mb-10 text-gray-500 text-sm dark:text-gray-400'>
+              {format(parseISO(frontMatter.date as string), 'MMMM dd, yyyy')}
+            </p>{' '}
           </div>
-        </article>
-      </div>
+          <article>
+            <div className='prose dark:prose-dark'>
+              <MDXRemote {...source} components={components} />
+            </div>
+          </article>
+        </div>
+      </Transition>
     </>
   )
 }
