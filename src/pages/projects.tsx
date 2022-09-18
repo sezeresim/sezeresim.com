@@ -1,10 +1,16 @@
+import { GetStaticProps } from 'next'
+
 import ProjectCard from '@/components/ProjectCard'
 import Seo from '@/components/Seo'
 import Transition from '@/components/Transition'
 
 import { projects } from '@/constants'
 
-const Projects = () => {
+type IndexProps = {
+  posts: any[]
+}
+
+const Projects = ({ posts }: IndexProps) => {
   return (
     <Transition>
       <Seo templateTitle='Projects' />
@@ -16,7 +22,7 @@ const Projects = () => {
         </div>
         <div className='container py-12'>
           <div className='gap-2 grid grid-cols-1 md:grid-cols-2'>
-            {projects.map((el) => (
+            {posts.map((el) => (
               <ProjectCard
                 key={el.id}
                 link={el.link}
@@ -31,6 +37,12 @@ const Projects = () => {
       </div>
     </Transition>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: { posts: projects },
+  }
 }
 
 export default Projects
