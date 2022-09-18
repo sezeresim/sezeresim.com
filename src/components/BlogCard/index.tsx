@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { FC } from 'react'
 
-import { IPost } from '@/interfaces'
+import { IPost } from '@/types'
 
 const BlogCard: FC<IPost> = ({
   id = '',

@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ['JetBrains Mono', ...fontFamily.sans],
+        primary: ['Poppins', ...fontFamily.sans],
+        secondary: ['JetBrains Mono', ...fontFamily.sans],
       },
       colors: {
         primary: {
@@ -34,5 +35,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 }

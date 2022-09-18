@@ -1,0 +1,25 @@
+---
+title: Hello
+description: Hello everyone
+date: '2022-09-18'
+image: '/images/bridge.jpg'
+author: Sezer Esim
+---
+
+```tsx
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function (nums) {
+  let map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    if (map.has(nums[i])) {
+      return true;
+    } else {
+      map.set(nums[i], 1);
+    }
+  }
+  return false;
+};
+```

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { socialAccounts } from '@/constants'
 
-import UnstyledLink from './ui/links/UnstyledLink'
+import UnstyledLink from './Links/UnstyledLink'
 
 const Footer = () => {
   return (
