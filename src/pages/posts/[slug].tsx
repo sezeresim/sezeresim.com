@@ -14,6 +14,7 @@ import rehypePrism from 'rehype-prism-plus'
 import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
 
+import Seo from '@/components/Seo'
 import Transition from '@/components/Transition'
 
 import { PostType } from '../../types/post'
@@ -37,6 +38,9 @@ type PostPageProps = {
 const PostPage = ({ source, frontMatter }: PostPageProps): JSX.Element => {
   return (
     </* customMeta={customMeta} */>
+      <Seo
+        image={`https://s.vercel.app/api?url=${window.location.href}&width=1280&height=720`}
+      />
       <Transition>
         <div className='min-h-main dark:divide-gray-700'>
           <div className='pb-8 pt-6 space-y-2 md:space-y-5'>

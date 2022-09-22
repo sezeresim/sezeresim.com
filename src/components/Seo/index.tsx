@@ -7,10 +7,11 @@ const defaultMeta = {
   title: 'Sezer Esim',
   siteName: 'Sezer Esim',
   description: 'Sezer Esim',
-  url: 'www.example.com',
+  url: 'https://sezeresim.vercel.app/',
   type: 'website',
   robots: 'follow, index',
-  image: '',
+  image:
+    'https://s.vercel.app/api?url=https://sezeresim.vercel.app/&width=1280&height=720',
 }
 
 type SeoProps = {
