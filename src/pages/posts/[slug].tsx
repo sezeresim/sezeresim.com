@@ -14,6 +14,7 @@ import rehypePrism from 'rehype-prism-plus'
 import rehypeSlug from 'rehype-slug'
 import remarkGfm from 'remark-gfm'
 
+import Seo from '@/components/Seo'
 import Transition from '@/components/Transition'
 
 import { PostType } from '../../types/post'
@@ -32,11 +33,19 @@ const components = {
 type PostPageProps = {
   source: MDXRemoteSerializeResult
   frontMatter: PostType
+  slug: string
 }
 
-const PostPage = ({ source, frontMatter }: PostPageProps): JSX.Element => {
+const PostPage = ({
+  source,
+  frontMatter,
+  slug,
+}: PostPageProps): JSX.Element => {
   return (
     </* customMeta={customMeta} */>
+      <Seo
+        image={`https://s.vercel.app/api?url=${slug}&width=1280&height=720`}
+      />
       <Transition>
         <div className='min-h-main dark:divide-gray-700'>
           <div className='pb-8 pt-6 space-y-2 md:space-y-5'>
@@ -93,6 +102,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       source: mdxSource,
       frontMatter: data,
+      slug: 'https://sezeresim.vercel.app/posts/' + params?.slug,
     },
   }
 }
