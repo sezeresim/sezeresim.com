@@ -33,13 +33,18 @@ const components = {
 type PostPageProps = {
   source: MDXRemoteSerializeResult
   frontMatter: PostType
+  slug: string
 }
 
-const PostPage = ({ source, frontMatter }: PostPageProps): JSX.Element => {
+const PostPage = ({
+  source,
+  frontMatter,
+  slug,
+}: PostPageProps): JSX.Element => {
   return (
     </* customMeta={customMeta} */>
       <Seo
-        image={`https://s.vercel.app/api?url=${window.location.href}&width=1280&height=720`}
+        image={`https://s.vercel.app/api?url=${slug}&width=1280&height=720`}
       />
       <Transition>
         <div className='min-h-main dark:divide-gray-700'>
@@ -97,6 +102,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       source: mdxSource,
       frontMatter: data,
+      slug: 'https://sezeresim.vercel.app/posts/' + params?.slug,
     },
   }
 }
