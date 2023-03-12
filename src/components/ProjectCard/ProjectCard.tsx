@@ -19,7 +19,7 @@ const ProjectCard: FC<IProjectCard> = ({
           <div className='h-36 relative w-full md:h-48'>
             <Image
               alt='title'
-              src={image}
+              src={image ?? '/images/no-image-available.png'}
               fill
               style={{
                 objectFit: 'cover',
