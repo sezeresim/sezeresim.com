@@ -1,13 +1,15 @@
 import { GetStaticProps } from 'next';
 
-import ProjectCard from '@/components/ProjectCard';
+import ProjectCard from '@/components/ProjectCard/ProjectCard';
 import Seo from '@/components/Seo';
 import Transition from '@/components/Transition/Transition';
 
 import { projects } from '@/constants';
 
+import { IProject } from '@/types';
+
 type IndexProps = {
-  posts: any[];
+  posts: IProject[];
 };
 
 const Projects = ({ posts }: IndexProps) => {
@@ -21,7 +23,7 @@ const Projects = ({ posts }: IndexProps) => {
           </h1>
         </div>
         <div className='container py-12'>
-          <div className='gap-2 grid grid-cols-1 md:grid-cols-2'>
+          <div className='gap-x-6 gap-y-5 grid grid-cols-1 md:grid-cols-2'>
             {posts.map((el) => (
               <ProjectCard
                 key={el.id}

@@ -1,9 +1,12 @@
-import * as React from 'react';
-
+import { FC } from 'react';
 import Footer from './Footer';
 import Header from './Header';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+type ILayoutProps = {
+  children: React.ReactNode;
+};
+
+const Layout: FC<ILayoutProps> = ({ children }) => {
   return (
     <div className='bg-white dark:bg-gray-900'>
       <Header />
@@ -11,4 +14,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <Footer />
     </div>
   );
-}
+};
+
+export default Layout;

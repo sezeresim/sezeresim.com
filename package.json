@@ -21,7 +21,7 @@
     "test": "jest",
     "postbuild": "next-sitemap --config next-sitemap.js",
     "prepare": "husky install",
-    "icon": "npx @svgr/cli -d src/components/Icon --ignore-existing --icon --typescript public/icons"
+    "icon": "npx @svgr/cli -d src/components/Icons --ignore-existing --icon --typescript public/icons"
   },
   "dependencies": {
     "@mdx-js/loader": "^2.3.0",
@@ -53,8 +53,6 @@
     "eslint": "^8.36.0",
     "eslint-config-next": "^13.2.4",
     "eslint-config-prettier": "^8.7.0",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
-    "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.5.0",

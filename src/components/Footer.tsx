@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { socialAccounts } from '@/constants';
 
 import UnstyledLink from './Links/UnstyledLink';

@@ -2,19 +2,7 @@ import * as React from 'react';
 
 import clsxm from '@/lib/clsxm';
 
-enum ButtonVariant {
-  'primary',
-  'outline',
-  'ghost',
-  'light',
-  'dark',
-}
-
-type ButtonProps = {
-  isLoading?: boolean;
-  isDarkBg?: boolean;
-  variant?: keyof typeof ButtonVariant;
-} & React.ComponentPropsWithRef<'button'>;
+import { ButtonProps } from './Button.types';
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (

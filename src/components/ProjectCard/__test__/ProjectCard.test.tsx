@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import ProjectCard from '..';
+import ProjectCard from '../ProjectCard';
 
 const cartData = {
   name: 'Domates',

@@ -3,13 +3,7 @@ import { FC } from 'react';
 
 import UnstyledLink from '@/components/Links/UnstyledLink';
 
-interface IProjectCard {
-  image: string;
-  name: string;
-  description: string;
-  githubLink: string;
-  link: string;
-}
+import { IProjectCard } from './ProjectCard.types';
 
 const ProjectCard: FC<IProjectCard> = ({
   link,
@@ -23,7 +17,17 @@ const ProjectCard: FC<IProjectCard> = ({
       <div className='bg-white overflow-hidden rounded-md shadow-md'>
         <UnstyledLink href={link}>
           <div className='h-36 relative w-full md:h-48'>
-            <Image alt='title' src={image} layout='fill' objectFit='cover' />
+            <Image
+              alt='title'
+              src={image}
+              fill
+              style={{
+                objectFit: 'cover',
+              }}
+              onError={(e) => {
+                e.currentTarget.src = '/images/no-image-available.png';
+              }}
+            />
           </div>
         </UnstyledLink>
         <div className='px-6 py-6'>

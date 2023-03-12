@@ -8,7 +8,7 @@ import { getAllPosts } from '@/lib/mdxapi';
 import Seo from '@/components/Seo';
 import Transition from '@/components/Transition/Transition';
 
-import { PostType } from '@/types/post';
+import { PostType } from '@/types';
 
 type IndexProps = {
   posts: PostType[];
@@ -27,7 +27,7 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
           </div>
           <div className='container py-12'>
             <div className='gap-x-2 gap-y-6 grid grid-cols-1'>
-              {posts.map((post: any) => (
+              {posts.map((post) => (
                 <article key={post.slug} className='mt-12'>
                   <p className='mb-1 text-gray-500 text-sm dark:text-gray-400'>
                     {format(parseISO(post.date), 'MMMM dd, yyyy')}
@@ -58,8 +58,7 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = getAllPosts(['date', 'description', 'slug', 'title']);
-
+  const posts = getAllPosts(['date', 'description', 'slug', 'title', 'image']);
   return {
     props: { posts },
   };

@@ -17,7 +17,7 @@ import remarkGfm from 'remark-gfm';
 import Seo from '@/components/Seo';
 import Transition from '@/components/Transition/Transition';
 
-import { PostType } from '../../types/post';
+import { PostType } from '../../types';
 import { postFilePaths, POSTS_PATH } from '../../utils/mdxUtils';
 
 // Custom components/renderers to pass to MDX.

@@ -1,11 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import React from 'react';
+import { FC } from 'react';
+import { TransitionProps } from './Transition.types';
 
-type Props = {
-  children: React.ReactNode;
-};
-
-const Transition = (props: Props) => {
+const Transition: FC<TransitionProps> = (props) => {
   return (
     <AnimatePresence>
       <motion.div
