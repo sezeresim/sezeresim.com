@@ -1,13 +1,13 @@
-import * as React from 'react'
+import * as React from 'react';
 
-import UnstyledLink from '@/components/Links/UnstyledLink'
+import UnstyledLink from '@/components/Links/UnstyledLink';
 
-import ThemeSwitch from './ThemeSwitch'
+import ThemeSwitch from './ThemeSwitch';
 
 const links = [
   { href: '/posts', label: 'Posts' },
   { href: '/projects', label: 'Projects' },
-]
+];
 
 export default function Header() {
   return (
@@ -38,5 +38,5 @@ export default function Header() {
         </nav>
       </div>
     </header>
-  )
+  );
 }

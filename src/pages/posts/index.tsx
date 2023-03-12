@@ -1,18 +1,18 @@
-import { format, parseISO } from 'date-fns'
-import { GetStaticProps } from 'next'
-import Link from 'next/link'
-import React from 'react'
+import { format, parseISO } from 'date-fns';
+import { GetStaticProps } from 'next';
+import Link from 'next/link';
+import React from 'react';
 
-import { getAllPosts } from '@/lib/mdxapi'
+import { getAllPosts } from '@/lib/mdxapi';
 
-import Seo from '@/components/Seo'
-import Transition from '@/components/Transition'
+import Seo from '@/components/Seo';
+import Transition from '@/components/Transition/Transition';
 
-import { PostType } from '@/types/post'
+import { PostType } from '@/types/post';
 
 type IndexProps = {
-  posts: PostType[]
-}
+  posts: PostType[];
+};
 
 export const Index = ({ posts }: IndexProps): JSX.Element => {
   return (
@@ -33,16 +33,18 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
                     {format(parseISO(post.date), 'MMMM dd, yyyy')}
                   </p>
                   <h1 className='mb-2 text-xl'>
-                    <Link as={`/posts/${post.slug}`} href='/posts/[slug]'>
-                      <a className='text-gray-900 dark:hover:text-blue-400 dark:text-white'>
-                        {post.title}
-                      </a>
+                    <Link
+                      as={`/posts/${post.slug}`}
+                      href='/posts/[slug]'
+                      className='text-gray-900 dark:hover:text-blue-400 dark:text-white'
+                    >
+                      {post.title}
                     </Link>
                   </h1>
                   <p className='mb-3'>{post.description}</p>
                   <p>
                     <Link as={`/posts/${post.slug}`} href='/posts/[slug]'>
-                      <a>Read More</a>
+                      Read More
                     </Link>
                   </p>
                 </article>
@@ -52,15 +54,15 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
         </div>
       </Transition>
     </>
-  )
-}
+  );
+};
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = getAllPosts(['date', 'description', 'slug', 'title'])
+  const posts = getAllPosts(['date', 'description', 'slug', 'title']);
 
   return {
     props: { posts },
-  }
-}
+  };
+};
 
-export default Index
+export default Index;

@@ -1,6 +1,6 @@
-import * as React from 'react'
+import * as React from 'react';
 
-import clsxm from '@/lib/clsxm'
+import clsxm from '@/lib/clsxm';
 
 enum ButtonVariant {
   'primary',
@@ -11,10 +11,10 @@ enum ButtonVariant {
 }
 
 type ButtonProps = {
-  isLoading?: boolean
-  isDarkBg?: boolean
-  variant?: keyof typeof ButtonVariant
-} & React.ComponentPropsWithRef<'button'>
+  isLoading?: boolean;
+  isDarkBg?: boolean;
+  variant?: keyof typeof ButtonVariant;
+} & React.ComponentPropsWithRef<'button'>;
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -29,7 +29,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const disabled = isLoading || buttonDisabled
+    const disabled = isLoading || buttonDisabled;
 
     return (
       <button
@@ -53,15 +53,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               'text-primary-500',
               'border border-primary-500',
               'hover:bg-primary-50 active:bg-primary-100 disabled:bg-primary-100',
-              isDarkBg &&
-                'hover:bg-gray-900 active:bg-gray-800 disabled:bg-gray-800',
+              isDarkBg && 'hover:bg-gray-900 active:bg-gray-800 disabled:bg-gray-800',
             ],
             variant === 'ghost' && [
               'text-primary-500',
               'shadow-none',
               'hover:bg-primary-50 active:bg-primary-100 disabled:bg-primary-100',
-              isDarkBg &&
-                'hover:bg-gray-900 active:bg-gray-800 disabled:bg-gray-800',
+              isDarkBg && 'hover:bg-gray-900 active:bg-gray-800 disabled:bg-gray-800',
             ],
             variant === 'light' && [
               'bg-white text-dark ',
@@ -99,8 +97,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {children}
       </button>
-    )
+    );
   }
-)
+);
 
-export default Button
+export default Button;

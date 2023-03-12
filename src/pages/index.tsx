@@ -1,14 +1,13 @@
-import { motion, useMotionValue, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 
-import Seo from '@/components/Seo'
+import Seo from '@/components/Seo';
 export default function HomePage() {
-  const x = useMotionValue(0)
-  const scale = useTransform(x, [-150, 150], [1.5, 0.5])
-  const rotate = useTransform(x, [-150, 150], [-90, 90])
+  const x = useMotionValue(0);
+  const scale = useTransform(x, [-150, 150], [1.5, 0.5]);
+  const rotate = useTransform(x, [-150, 150], [-90, 90]);
   return (
     <>
       <Seo templateTitle='Home' />
-
       <div className='flex flex-col justify-center min-h-main md:flex-row md:items-center md:justify-between'>
         <div className='order-1 w-full md:mr-28'>
           <motion.div
@@ -39,5 +38,5 @@ export default function HomePage() {
         </div>
       </div>
     </>
-  )
+  );
 }

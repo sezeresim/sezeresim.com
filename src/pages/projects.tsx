@@ -1,14 +1,14 @@
-import { GetStaticProps } from 'next'
+import { GetStaticProps } from 'next';
 
-import ProjectCard from '@/components/ProjectCard'
-import Seo from '@/components/Seo'
-import Transition from '@/components/Transition'
+import ProjectCard from '@/components/ProjectCard';
+import Seo from '@/components/Seo';
+import Transition from '@/components/Transition/Transition';
 
-import { projects } from '@/constants'
+import { projects } from '@/constants';
 
 type IndexProps = {
-  posts: any[]
-}
+  posts: any[];
+};
 
 const Projects = ({ posts }: IndexProps) => {
   return (
@@ -36,13 +36,13 @@ const Projects = ({ posts }: IndexProps) => {
         </div>
       </div>
     </Transition>
-  )
-}
+  );
+};
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: { posts: projects },
-  }
-}
+  };
+};
 
-export default Projects
+export default Projects;

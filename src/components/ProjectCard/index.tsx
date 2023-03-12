@@ -1,14 +1,14 @@
-import Image from 'next/image'
-import { FC } from 'react'
+import Image from 'next/image';
+import { FC } from 'react';
 
-import UnstyledLink from '@/components/Links/UnstyledLink'
+import UnstyledLink from '@/components/Links/UnstyledLink';
 
 interface IProjectCard {
-  image: string
-  name: string
-  description: string
-  githubLink: string
-  link: string
+  image: string;
+  name: string;
+  description: string;
+  githubLink: string;
+  link: string;
 }
 
 const ProjectCard: FC<IProjectCard> = ({
@@ -36,7 +36,7 @@ const ProjectCard: FC<IProjectCard> = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProjectCard
+export default ProjectCard;

@@ -1,13 +1,13 @@
-import { AnimatePresence, motion } from 'framer-motion'
-import React from 'react'
+import { AnimatePresence, motion } from 'framer-motion';
+import React from 'react';
 
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 const Transition = (props: Props) => {
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence>
       <motion.div
         initial={{ y: 10, opacity: 0 }}
         animate={{ y: 10, opacity: 1 }}
@@ -21,7 +21,7 @@ const Transition = (props: Props) => {
         {props.children}
       </motion.div>
     </AnimatePresence>
-  )
-}
+  );
+};
 
-export default Transition
+export default Transition;

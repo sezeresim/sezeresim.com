@@ -1,7 +1,7 @@
 export type ISocialAccount = {
-  name: 'Linkedin' | 'Github' | 'Twitter' | 'Instagram'
-  url: string
-}
+  name: 'Linkedin' | 'Github' | 'Twitter' | 'Instagram';
+  url: string;
+};
 
 export const socialAccounts: ISocialAccount[] = [
   {
@@ -18,18 +18,18 @@ export const socialAccounts: ISocialAccount[] = [
   },
   {
     name: 'Instagram',
-    url: 'https://www.instagram.com/sezeeresim',
+    url: 'https://www.instagram.com/sezeresim',
   },
-]
+];
 
 export type IProject = {
-  id: string
-  name: string
-  description: string
-  image: string
-  link: string
-  githubLink: string
-}
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  link: string;
+  githubLink: string;
+};
 
 export const projects: IProject[] = [
   {
@@ -48,4 +48,4 @@ export const projects: IProject[] = [
     link: 'https://matching-game-five.vercel.app/',
     githubLink: 'https://github.com/sezeresim/matching-game-react',
   },
-]
+];

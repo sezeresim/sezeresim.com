@@ -1,5 +1,5 @@
-import Head from 'next/head'
-import { useRouter } from 'next/router'
+import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 const defaultMeta = {
   title: 'Sezer Esim',
@@ -10,22 +10,22 @@ const defaultMeta = {
   robots: 'follow, index',
   image:
     'https://s.vercel.app/api?url=https://sezeresim.vercel.app/&width=1280&height=720',
-}
+};
 
 type SeoProps = {
-  date?: string
-  templateTitle?: string
-} & Partial<typeof defaultMeta>
+  date?: string;
+  templateTitle?: string;
+} & Partial<typeof defaultMeta>;
 
 export default function Seo(props: SeoProps) {
-  const router = useRouter()
+  const router = useRouter();
   const meta = {
     ...defaultMeta,
     ...props,
-  }
+  };
   meta['title'] = props.templateTitle
     ? `${props.templateTitle} | ${meta.siteName}`
-    : meta.title
+    : meta.title;
 
   return (
     <Head>
@@ -49,16 +49,8 @@ export default function Seo(props: SeoProps) {
       {meta.date && (
         <>
           <meta property='article:published_time' content={meta.date} />
-          <meta
-            name='publish_date'
-            property='og:publish_date'
-            content={meta.date}
-          />
-          <meta
-            name='author'
-            property='article:author'
-            content='Theodorus Clarence'
-          />
+          <meta name='publish_date' property='og:publish_date' content={meta.date} />
+          <meta name='author' property='article:author' content='Theodorus Clarence' />
         </>
       )}
 
@@ -67,21 +59,18 @@ export default function Seo(props: SeoProps) {
         <link key={linkProps.href} {...linkProps} />
       ))}
       <meta name='msapplication-TileColor' content='#ffffff' />
-      <meta
-        name='msapplication-TileImage'
-        content='/favicon/ms-icon-144x144.png'
-      />
+      <meta name='msapplication-TileImage' content='/favicon/ms-icon-144x144.png' />
       <meta name='theme-color' content='#ffffff' />
     </Head>
-  )
+  );
 }
 
 type Favicons = {
-  rel: string
-  href: string
-  sizes?: string
-  type?: string
-}
+  rel: string;
+  href: string;
+  sizes?: string;
+  type?: string;
+};
 
 const favicons: Array<Favicons> = [
   {
@@ -157,4 +146,4 @@ const favicons: Array<Favicons> = [
     rel: 'manifest',
     href: '/favicon/manifest.json',
   },
-]
+];
