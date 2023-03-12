@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  body * {
+    @apply duration-200 transition-colors;
+  }
+
   .min-h-main {
     min-height: calc(100vh - theme(spacing.48));
   }

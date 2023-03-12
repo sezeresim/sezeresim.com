@@ -1,6 +1,6 @@
-import { render } from '@testing-library/react'
+import { render } from '@testing-library/react';
 
-import ProjectCard from '..'
+import ProjectCard from '../ProjectCard';
 
 const cartData = {
   name: 'Domates',
@@ -8,7 +8,7 @@ const cartData = {
   image: '/images/pomodoro.webp',
   link: 'https://play.google.com/store/apps/details?id=com.pomodorotracking',
   githubLink: 'https://github.com/sezeresim/domates-rn',
-}
+};
 
 describe('ProjectCard', () => {
   test('should be render', () => {
@@ -20,9 +20,9 @@ describe('ProjectCard', () => {
         image={cartData.image}
         name={cartData.name}
       />
-    )
-    expect(container).toBeInTheDocument()
-  })
+    );
+    expect(container).toBeInTheDocument();
+  });
   test('should be render name with sezer', () => {
     const { getByText } = render(
       <ProjectCard
@@ -32,7 +32,7 @@ describe('ProjectCard', () => {
         image={cartData.image}
         name='sezer'
       />
-    )
-    expect(getByText('sezer')).toBeInTheDocument()
-  })
-})
+    );
+    expect(getByText('sezer')).toBeInTheDocument();
+  });
+});

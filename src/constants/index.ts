@@ -1,7 +1,4 @@
-export type ISocialAccount = {
-  name: 'Linkedin' | 'Github' | 'Twitter' | 'Instagram'
-  url: string
-}
+import { IProject, ISocialAccount } from '@/types';
 
 export const socialAccounts: ISocialAccount[] = [
   {
@@ -18,20 +15,19 @@ export const socialAccounts: ISocialAccount[] = [
   },
   {
     name: 'Instagram',
-    url: 'https://www.instagram.com/sezeeresim',
+    url: 'https://www.instagram.com/sezeresim',
   },
-]
-
-export type IProject = {
-  id: string
-  name: string
-  description: string
-  image: string
-  link: string
-  githubLink: string
-}
+];
 
 export const projects: IProject[] = [
+  {
+    id: 'react-context-cli',
+    name: 'rca-cli',
+    description: 'A cli tool to creating react context api',
+    image: '',
+    link: 'https://github.com/sezeresim/react-context-cli',
+    githubLink: 'https://github.com/sezeresim/react-context-cli',
+  },
   {
     id: 'domates',
     name: 'Domates',
@@ -48,4 +44,4 @@ export const projects: IProject[] = [
     link: 'https://matching-game-five.vercel.app/',
     githubLink: 'https://github.com/sezeresim/matching-game-react',
   },
-]
+];

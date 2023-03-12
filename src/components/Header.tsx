@@ -1,34 +1,32 @@
-import * as React from 'react'
+import Link from 'next/link';
 
-import UnstyledLink from '@/components/Links/UnstyledLink'
-
-import ThemeSwitch from './ThemeSwitch'
+import ThemeSwitch from './ThemeSwitch';
 
 const links = [
   { href: '/posts', label: 'Posts' },
   { href: '/projects', label: 'Projects' },
-]
+];
 
-export default function Header() {
+const Header = () => {
   return (
     <header className='flex h-20 items-center'>
       <div className='flex items-center justify-between layout'>
-        <UnstyledLink
+        <Link
           href='/'
           className='font-bold dark:text-gray-100 hover:dark:text-blue-500 hover:text-blue-500'
         >
           Home
-        </UnstyledLink>
+        </Link>
         <nav>
           <ul className='flex items-center justify-between space-x-4'>
             {links.map(({ href, label }) => (
               <li key={`${href}${label}`} className='inline-flex items-center'>
-                <UnstyledLink
+                <Link
                   href={href}
                   className='dark:text-gray-100 hover:dark:text-blue-500 hover:text-blue-500'
                 >
                   {label}
-                </UnstyledLink>
+                </Link>
               </li>
             ))}
             <li className='inline-flex items-center'>
@@ -38,5 +36,7 @@ export default function Header() {
         </nav>
       </div>
     </header>
-  )
-}
+  );
+};
+
+export default Header;

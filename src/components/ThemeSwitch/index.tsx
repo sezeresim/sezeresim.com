@@ -1,18 +1,18 @@
-import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
-import { Moon, Sun } from '../Icon'
+import { Moon, Sun } from '@/components/Icons';
 
 const ThemeSwitch = () => {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
-  useEffect(() => setMounted(true), [])
+  useEffect(() => setMounted(true), []);
 
   if (!mounted) {
-    return null
+    return null;
   }
-  const isDark = theme === 'dark'
+  const isDark = theme === 'dark';
 
   return (
     <button
@@ -21,7 +21,7 @@ const ThemeSwitch = () => {
     >
       {isDark ? <Sun /> : <Moon />}
     </button>
-  )
-}
+  );
+};
 
-export default ThemeSwitch
+export default ThemeSwitch;

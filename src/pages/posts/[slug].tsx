@@ -1,24 +1,24 @@
-import { format, parseISO } from 'date-fns'
-import fs from 'fs'
-import matter from 'gray-matter'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
-import { serialize } from 'next-mdx-remote/serialize'
-import path from 'path'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypeCodeTitles from 'rehype-code-titles'
-import rehypePrism from 'rehype-prism-plus'
-import rehypeSlug from 'rehype-slug'
-import remarkGfm from 'remark-gfm'
+import { format, parseISO } from 'date-fns';
+import fs from 'fs';
+import matter from 'gray-matter';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { serialize } from 'next-mdx-remote/serialize';
+import path from 'path';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeCodeTitles from 'rehype-code-titles';
+import rehypePrism from 'rehype-prism-plus';
+import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
 
-import Seo from '@/components/Seo'
-import Transition from '@/components/Transition'
+import Seo from '@/components/Seo';
+import Transition from '@/components/Transition/Transition';
 
-import { PostType } from '../../types/post'
-import { postFilePaths, POSTS_PATH } from '../../utils/mdxUtils'
+import { PostType } from '../../types';
+import { postFilePaths, POSTS_PATH } from '../../utils/mdxUtils';
 
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
@@ -28,24 +28,18 @@ const components = {
   Head,
   Image,
   Link,
-}
+};
 
 type PostPageProps = {
-  source: MDXRemoteSerializeResult
-  frontMatter: PostType
-  slug: string
-}
+  source: MDXRemoteSerializeResult;
+  frontMatter: PostType;
+  slug: string;
+};
 
-const PostPage = ({
-  source,
-  frontMatter,
-  slug,
-}: PostPageProps): JSX.Element => {
+const PostPage = ({ source, frontMatter, slug }: PostPageProps): JSX.Element => {
   return (
     </* customMeta={customMeta} */>
-      <Seo
-        image={`https://s.vercel.app/api?url=${slug}&width=1280&height=720`}
-      />
+      <Seo image={`https://s.vercel.app/api?url=${slug}&width=1280&height=720`} />
       <Transition>
         <div className='min-h-main dark:divide-gray-700'>
           <div className='pb-8 pt-6 space-y-2 md:space-y-5'>
@@ -67,14 +61,14 @@ const PostPage = ({
         </div>
       </Transition>
     </>
-  )
-}
+  );
+};
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const postFilePath = path.join(POSTS_PATH, `${params?.slug}.mdx`)
-  const source = fs.readFileSync(postFilePath)
+  const postFilePath = path.join(POSTS_PATH, `${params?.slug}.mdx`);
+  const source = fs.readFileSync(postFilePath);
 
-  const { content, data } = matter(source)
+  const { content, data } = matter(source);
 
   const mdxSource = await serialize(content, {
     // Optionally pass remark/rehype plugins
@@ -96,7 +90,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       format: 'mdx',
     },
     scope: data,
-  })
+  });
 
   return {
     props: {
@@ -104,20 +98,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       frontMatter: data,
       slug: 'https://sezeresim.vercel.app/posts/' + params?.slug,
     },
-  }
-}
+  };
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = postFilePaths
     // Remove file extensions for page paths
     .map((path) => path.replace(/\.mdx?$/, ''))
     // Map the path into the static paths object required by Next.js
-    .map((slug) => ({ params: { slug } }))
+    .map((slug) => ({ params: { slug } }));
 
   return {
     paths,
     fallback: false,
-  }
-}
+  };
+};
 
-export default PostPage
+export default PostPage;
