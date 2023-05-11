@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const plugin = require('tailwindcss/plugin');
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
 /** @type {import("@types/tailwindcss/tailwind-config").TailwindConfig } */
@@ -35,5 +36,11 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    plugin(function ({ addVariant }) {
+      addVariant('not-last', '&:not(:last-child)');
+    }),
+  ],
 };
