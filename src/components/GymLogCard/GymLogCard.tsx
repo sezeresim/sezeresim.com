@@ -1,15 +1,11 @@
-import { format, parseISO } from 'date-fns';
+import { ExercisesItemType } from '@/services/db.types';
 import { useInView } from 'framer-motion';
 import React, { useRef } from 'react';
+import dayjs from 'dayjs';
 
 type Props = {
   date: string;
-  exercices: {
-    name: string;
-    setCount: number;
-    reps: number;
-    weight: number;
-  }[];
+  exercices: ExercisesItemType[];
 };
 
 const GymLogCard = (props: Props) => {
@@ -18,7 +14,7 @@ const GymLogCard = (props: Props) => {
 
   return (
     <div
-      className='border mb-4 px-4 py-6'
+      className='border-2 dark:border-gray-500 border-gray-800 mb-4 px-4 py-6 bg-gray-200 dark:bg-gray-800 rounded-md'
       style={{
         transform: isInView ? 'none' : 'translateX(-200px)',
         opacity: isInView ? 1 : 0,
@@ -26,21 +22,17 @@ const GymLogCard = (props: Props) => {
       }}
       ref={ref}
     >
-      <time
-        dateTime={format(parseISO(props.date as string), 'MMMM dd, yyyy')}
-        className='text-xl font-bold'
-      >
-        {format(parseISO(props.date as string), 'MMMM dd, yyyy')}
+      <time className='text-xl font-bold'>
+        {dayjs(props.date).format('MMMM D, YYYY')}
       </time>
-
       <ul className='mt-4'>
         {props.exercices.map((el, elKey) => {
           return (
             <li key={elKey} className='not-last:mb-5'>
               <span className='font-medium '> {el.name} </span> {' : '}
-              <span className='font-semibold italic text-orange-500'>{el.setCount}</span>
+              <span className='font-semibold italic text-orange-500'>{el.set}</span>
               {' x '}
-              <span className='font-semibold italic text-orange-500'>{el.reps}</span>
+              <span className='font-semibold italic text-orange-500'>{el.rep}</span>
               {' x '}
               <span className='font-semibold italic text-orange-500'>{el.weight}</span>
               {' kg'}

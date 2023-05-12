@@ -1,23 +1,15 @@
 import GymLogCard from '@/components/GymLogCard/GymLogCard';
 import Seo from '@/components/Seo';
 import Transition from '@/components/Transition/Transition';
+import ApiService from '@/services/db';
+import { GetExercisesItemType } from '@/services/db.types';
 import React from 'react';
 
-const gymLogData = {
-  date: '2023-05-12',
-  exercices: [
-    { name: 'Leg Press', setCount: 3, reps: 12, weight: 35 },
-    { name: 'Leg Press', setCount: 3, reps: 12, weight: 35 },
-    { name: 'Leg Press', setCount: 3, reps: 12, weight: 35 },
-    { name: 'Leg Press', setCount: 3, reps: 12, weight: 35 },
-    { name: 'Leg Press', setCount: 3, reps: 12, weight: 35 },
-    { name: 'Leg Press', setCount: 3, reps: 12, weight: 35 },
-    { name: 'Leg Press', setCount: 3, reps: 12, weight: 35 },
-    { name: 'Leg Press', setCount: 3, reps: 12, weight: 35 },
-  ],
+type IProps = {
+  dates: GetExercisesItemType[];
 };
 
-const GymLogs = () => {
+const GymLogs = ({ dates }: IProps) => {
   return (
     <Transition>
       <Seo templateTitle='Projects' />
@@ -27,12 +19,26 @@ const GymLogs = () => {
             Gym Logs
           </h1>
         </div>
-        {new Array(50).fill(gymLogData).map((gymLog, key) => (
-          <GymLogCard key={key} date={gymLog.date} exercices={gymLog.exercices} />
+        {dates?.map((gymLog) => (
+          <GymLogCard
+            key={gymLog.id}
+            date={gymLog.created_at}
+            exercices={gymLog.exercises}
+          />
         ))}
       </div>
     </Transition>
   );
 };
+
+export async function getServerSideProps() {
+  const { data } = await ApiService.getExercices();
+
+  return {
+    props: {
+      dates: data,
+    },
+  };
+}
 
 export default GymLogs;

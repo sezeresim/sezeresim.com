@@ -17,7 +17,7 @@ const ThemeSwitch = () => {
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className='duration-300 text-2xl transition-all dark:text-gray-100 hover:dark:text-blue-500 hover:text-blue-500'
+      className='duration-100 text-2xl transition-all dark:text-gray-100 hover:dark:text-blue-500 hover:text-blue-500'
     >
       {isDark ? <Sun /> : <Moon />}
     </button>
