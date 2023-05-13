@@ -1,8 +1,11 @@
+import Button from '@/components/Button/Button';
 import GymLogCard from '@/components/GymLogCard/GymLogCard';
 import Seo from '@/components/Seo';
 import Transition from '@/components/Transition/Transition';
 import ApiService from '@/services/db';
 import { GetExercisesItemType } from '@/services/db.types';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 type IProps = {
@@ -10,6 +13,19 @@ type IProps = {
 };
 
 const GymLogs = ({ dates }: IProps) => {
+  const router = useRouter();
+
+  const addRecordHandler = async () => {
+    try {
+      const res = await axios.post('/api/exercises');
+      console.log(res.data);
+      router.replace(router.asPath);
+    } catch (error) {
+      console.log(error);
+      router.replace(router.asPath);
+    }
+  };
+
   return (
     <Transition>
       <Seo templateTitle='Projects' />
@@ -19,9 +35,16 @@ const GymLogs = ({ dates }: IProps) => {
             Gym Logs
           </h1>
         </div>
+
+        <div className='bg-gray-600 border mb-4 px-2 py-4'>
+          <Button variant='primary' onClick={addRecordHandler}>
+            Kayıt Ekle
+          </Button>
+        </div>
         {dates?.map((gymLog) => (
           <GymLogCard
             key={gymLog.id}
+            id={gymLog.id}
             date={gymLog.created_at}
             exercices={gymLog.exercises}
           />
