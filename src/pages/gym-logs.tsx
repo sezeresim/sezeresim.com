@@ -1,5 +1,6 @@
 import Button from '@/components/Button/Button';
 import GymLogCard from '@/components/GymLogCard/GymLogCard';
+
 import Seo from '@/components/Seo';
 import Transition from '@/components/Transition/Transition';
 import ApiService from '@/services/db';
@@ -25,7 +26,6 @@ const GymLogs = ({ dates }: IProps) => {
       router.replace(router.asPath);
     }
   };
-
   return (
     <Transition>
       <Seo templateTitle='Projects' />
@@ -35,10 +35,9 @@ const GymLogs = ({ dates }: IProps) => {
             Gym Logs
           </h1>
         </div>
-
-        <div className='bg-gray-600 border mb-4 px-2 py-4'>
-          <Button variant='primary' onClick={addRecordHandler}>
-            Kayıt Ekle
+        <div className='flex justify-end mb-4'>
+          <Button variant='green' onClick={addRecordHandler}>
+            New Day
           </Button>
         </div>
         {dates?.map((gymLog) => (
