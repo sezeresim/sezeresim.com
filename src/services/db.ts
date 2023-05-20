@@ -12,6 +12,10 @@ class ApiService {
     return supabase.from('dates').insert([{}]);
   }
 
+  public static deleteExercise(id: number) {
+    return supabase.from('dates').delete().eq('id', id);
+  }
+
   public static addRecord({
     dates_id,
     name,

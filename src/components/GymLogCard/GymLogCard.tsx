@@ -36,6 +36,7 @@ const GymLogCard = (props: Props) => {
       dates_id: props.id,
     },
   });
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const onSubmit: SubmitHandler<ExerciseSchema> = async (formData) => {
     try {
@@ -43,11 +44,24 @@ const GymLogCard = (props: Props) => {
       const res = await axios.post('/api/addrecord', formData);
       router.replace(router.asPath);
       console.log(res.data);
+      setIsOpenModal(false);
     } catch (error) {
       console.log(error);
     }
   };
-  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+
+  const deleteExerciseHandler = async () => {
+    try {
+      const isOk = window.confirm('Are you sure?');
+      if (isOk) {
+        const res = await axios.post('/api/delete', { id: props.id });
+        router.replace(router.asPath);
+        console.log(res.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -68,7 +82,7 @@ const GymLogCard = (props: Props) => {
             <Button variant='blue' onClick={() => setIsOpenModal(true)}>
               <AntDesignPlusOutlined />
             </Button>
-            <Button variant='red' onClick={() => console.log('delete')}>
+            <Button variant='red' onClick={deleteExerciseHandler}>
               <AntDesignDeleteTwotone />
             </Button>
           </div>

@@ -47,7 +47,7 @@ function Modal(props: Props) {
               initial='hidden'
               animate='visible'
               exit='exit'
-              className='bg-opacity-90 bg-zinc-950 fixed flex h-[calc(100%)] items-center justify-center max-h-full overflow-x-hidden overflow-y-auto right-0 top-0 w-full z-50 md:inset-0'
+              className='bg-opacity-90 bg-zinc-950 fixed flex h-[calc(100%)] items-center justify-center max-h-full overflow-x-hidden overflow-y-auto p-4 right-0 top-0 w-full z-50 md:inset-0'
             >
               <div className='max-h-full max-w-2xl relative w-full'>
                 <div className='bg-white relative rounded-md dark:bg-gray-700'>
