@@ -6,26 +6,61 @@ import Transition from '@/components/Transition/Transition';
 import ApiService from '@/services/db';
 import { GetExercisesItemType } from '@/services/db.types';
 import axios from 'axios';
-import { useRouter } from 'next/router';
-import React from 'react';
+
+import React, { useState } from 'react';
 
 type IProps = {
   dates: GetExercisesItemType[];
 };
 
 const GymLogs = ({ dates }: IProps) => {
-  const router = useRouter();
+  const [data, setData] = useState(dates);
 
   const addRecordHandler = async () => {
     try {
       const res = await axios.post('/api/exercises');
-      console.log(res.data);
-      router.replace(router.asPath);
+      setData((e) => [...res.data.data, ...e]);
     } catch (error) {
       console.log(error);
-      router.replace(router.asPath);
     }
   };
+
+  const deleteRecordHandler = async (id: number) => {
+    try {
+      const isOk = window.confirm('Are you sure?');
+      if (isOk) {
+        const res = await axios.post('/api/delete', { id: id });
+        setData((e) => e.filter(({ id }) => id != res.data.data[0].id));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const addExerciseHandler = async (formData: {
+    name: string;
+    dates_id: number;
+    rep: number;
+    set: number;
+    weight: number;
+  }) => {
+    try {
+      const res = await axios.post('/api/addrecord', formData);
+      setData((e) =>
+        e.map((el) =>
+          el.id == formData.dates_id
+            ? {
+                ...el,
+                exercises: [...res.data.data, ...el.exercises],
+              }
+            : el
+        )
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Transition>
       <Seo templateTitle='Projects' />
@@ -40,12 +75,14 @@ const GymLogs = ({ dates }: IProps) => {
             New Day
           </Button>
         </div>
-        {dates?.map((gymLog) => (
+        {data?.map((gymLog) => (
           <GymLogCard
             key={gymLog.id}
             id={gymLog.id}
             date={gymLog.created_at}
             exercices={gymLog.exercises}
+            onDelete={deleteRecordHandler}
+            onAdd={addExerciseHandler}
           />
         ))}
       </div>

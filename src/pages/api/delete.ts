@@ -11,9 +11,7 @@ export const deleteRequestSchema = z.object({
 
 export type DeleteRequestSchema = z.infer<typeof exerciseSchema>;
 
-type ResponseData = {
-  message: any;
-};
+type ResponseData = any;
 
 export default async function handler(
   req: NextApiRequest,
@@ -27,9 +25,7 @@ export default async function handler(
       }
       const response = await ApiService.deleteExercise(req.body.id);
 
-      res.status(200).json({
-        message: response.statusText,
-      });
+      res.status(200).json(response);
     } catch (error) {
       res.status(500).json({
         message: 'UnexpectedError',

@@ -1,9 +1,7 @@
 import ApiService from '@/services/db';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-type ResponseData = {
-  message: any;
-};
+type ResponseData = any;
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,9 +9,7 @@ export default async function handler(
 ) {
   try {
     const response = await ApiService.addExercices();
-    res.status(200).json({
-      message: response.statusText,
-    });
+    res.status(200).json(response);
   } catch (error) {
     res.status(500).json({
       message: 'UnexpectedError',

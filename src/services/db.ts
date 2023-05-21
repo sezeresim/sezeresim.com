@@ -9,11 +9,11 @@ class ApiService {
   }
 
   public static addExercices() {
-    return supabase.from('dates').insert([{}]);
+    return supabase.from('dates').insert([{}]).select();
   }
 
   public static deleteExercise(id: number) {
-    return supabase.from('dates').delete().eq('id', id);
+    return supabase.from('dates').delete().eq('id', id).select();
   }
 
   public static addRecord({
@@ -23,15 +23,18 @@ class ApiService {
     set,
     weight,
   }: Pick<ExercisesItemType, 'dates_id' | 'name' | 'rep' | 'set' | 'weight'>) {
-    return supabase.from('exercises').insert([
-      {
-        dates_id: dates_id,
-        name: name,
-        rep: rep,
-        set: set,
-        weight: weight,
-      },
-    ]);
+    return supabase
+      .from('exercises')
+      .insert([
+        {
+          dates_id: dates_id,
+          name: name,
+          rep: rep,
+          set: set,
+          weight: weight,
+        },
+      ])
+      .select();
   }
 }
 export default ApiService;

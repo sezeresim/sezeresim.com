@@ -6,8 +6,6 @@ import Button from '../Button/Button';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Textfield from '../Textfield/Textfield';
-import axios from 'axios';
-import { useRouter } from 'next/router';
 import { ExerciseSchema, exerciseSchema } from '@/models/ExerciseSchema.schema';
 import Modal from '../Modal/Modal';
 import Select from '../Select/Select';
@@ -19,47 +17,43 @@ type Props = {
   date: string;
   id: number;
   exercices: ExercisesItemType[];
+  onDelete: (id: number) => Promise<void>;
+  onAdd: (args: {
+    name: string;
+    dates_id: number;
+    rep: number;
+    set: number;
+    weight: number;
+  }) => Promise<void>;
 };
 
 const GymLogCard = (props: Props) => {
+  const { id, date, exercices, onDelete, onAdd } = props;
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const router = useRouter();
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<ExerciseSchema>({
     resolver: zodResolver(exerciseSchema),
     defaultValues: {
-      dates_id: props.id,
+      dates_id: id,
     },
   });
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
+  const [isLoading, setIsLoading] = useState(false);
   const onSubmit: SubmitHandler<ExerciseSchema> = async (formData) => {
     try {
-      console.log(formData);
-      const res = await axios.post('/api/addrecord', formData);
-      router.replace(router.asPath);
-      console.log(res.data);
+      setIsLoading(true);
+      await onAdd(formData);
       setIsOpenModal(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const deleteExerciseHandler = async () => {
-    try {
-      const isOk = window.confirm('Are you sure?');
-      if (isOk) {
-        const res = await axios.post('/api/delete', { id: props.id });
-        router.replace(router.asPath);
-        console.log(res.data);
-      }
-    } catch (error) {
-      console.log(error);
+      reset();
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -76,22 +70,22 @@ const GymLogCard = (props: Props) => {
       >
         <header className='flex items-end justify-between'>
           <time className='font-bold text-xl'>
-            {dayjs(props.date).format('MMMM D, YYYY')}
+            {dayjs(date).format('MMMM D, YYYY')} ||| {props.id}
           </time>
           <div className='flex gap-2'>
             <Button variant='blue' onClick={() => setIsOpenModal(true)}>
               <AntDesignPlusOutlined />
             </Button>
-            <Button variant='red' onClick={deleteExerciseHandler}>
+            <Button variant='red' onClick={() => onDelete(id)}>
               <AntDesignDeleteTwotone />
             </Button>
           </div>
         </header>
         <main className='mt-4'>
-          {props.exercices.length == 0 && <div>No Data</div>}
-          {props.exercices.length > 0 && (
+          {exercices?.length == 0 && <div>No Data</div>}
+          {exercices?.length > 0 && (
             <ul>
-              {props.exercices.map((el, elKey) => (
+              {exercices.map((el, elKey) => (
                 <li key={elKey} className='not-last:mb-5'>
                   <span className='font-medium'> {el.name} </span> {' : '}
                   <span className='font-semibold italic text-orange-500'>
@@ -147,7 +141,7 @@ const GymLogCard = (props: Props) => {
             error={errors.weight?.message}
           />
           <div className='flex justify-center'>
-            <Button variant='green' type='submit'>
+            <Button variant='green' type='submit' disabled={isLoading}>
               Add Exercises
             </Button>
           </div>
