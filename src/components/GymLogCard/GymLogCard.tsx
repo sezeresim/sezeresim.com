@@ -70,7 +70,7 @@ const GymLogCard = (props: Props) => {
       >
         <header className='flex items-end justify-between'>
           <time className='font-bold text-xl'>
-            {dayjs(date).format('MMMM D, YYYY')} ||| {props.id}
+            {dayjs(date).format('MMMM D, YYYY')} | {props.id}
           </time>
           <div className='flex gap-2'>
             <Button variant='blue' onClick={() => setIsOpenModal(true)}>
