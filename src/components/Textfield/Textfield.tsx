@@ -1,4 +1,4 @@
-import clsxm from '@/lib/clsxm';
+import clsx from 'clsx';
 import React, { useId } from 'react';
 
 export type TextfieldProps = {
@@ -17,7 +17,7 @@ const Textfield = React.forwardRef<HTMLInputElement, TextfieldProps>(
       <div className='gap-y-2 mb-4'>
         <div className='mb-4 md:mb-0 md:mr-2'>
           <label
-            className={clsxm('block font-bold mb-2 text-gray-500 text-sm', [
+            className={clsx('block font-bold mb-2 text-gray-500 text-sm', [
               error && ['text-red-700 dark:text-red-500'],
             ])}
             htmlFor={generetedId}
@@ -25,7 +25,7 @@ const Textfield = React.forwardRef<HTMLInputElement, TextfieldProps>(
             {label}
           </label>
           <input
-            className={clsxm(
+            className={clsx(
               'bg-gray-50 block border border-gray-300 p-2.5 rounded-lg text-gray-900 text-sm w-full dark:bg-gray-700 dark:border-gray-600 dark:focus:border-blue-500 dark:focus:ring-blue-500 dark:placeholder-gray-400 dark:text-white focus:border-blue-500 focus:ring-blue-500',
               [
                 error && [
