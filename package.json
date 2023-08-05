@@ -1,5 +1,5 @@
 {
-  "name": "ts-nextjs-tailwind-starter",
+  "name": "sezeresim.com",
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
@@ -27,7 +27,6 @@
     "@hookform/resolvers": "^3.1.0",
     "@mdx-js/loader": "^2.3.0",
     "@next/mdx": "^13.2.4",
-    "@supabase/supabase-js": "^2.21.0",
     "@tailwindcss/typography": "^0.5.9",
     "axios": "^1.4.0",
     "clsx": "^1.2.1",
@@ -40,8 +39,7 @@
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.9",
-    "zod": "^3.21.4"
+    "react-hook-form": "^7.43.9"
   },
   "devDependencies": {
     "@svgr/cli": "^6.5.1",

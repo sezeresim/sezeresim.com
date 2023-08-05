@@ -5,10 +5,10 @@ import ThemeSwitch from './ThemeSwitch';
 const links = [
   { href: '/posts', label: 'Posts' },
   { href: '/projects', label: 'Projects' },
-  {
+  /* {
     href: '/gym-logs',
     label: 'GymLog',
-  },
+  }, */
 ];
 
 const Header = () => {
