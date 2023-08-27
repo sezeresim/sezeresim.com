@@ -145,7 +145,7 @@
 
   code[class*='language-'],
   pre[class*='language-'] {
-    @apply font-secondary p-4 text-gray-800 dark:text-gray-50;
+    @apply font-mono p-4 text-gray-800 dark:text-gray-50;
   }
 
   pre::-webkit-scrollbar {

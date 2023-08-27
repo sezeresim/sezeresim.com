@@ -38,8 +38,8 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
       fontFamily: {
-        primary: ['Inter', ...fontFamily.sans],
-        secondary: ['JetBrains Mono', ...fontFamily.sans],
+        sans: ['var(--font-inter)', ...fontFamily.sans],
+        mono: ['var(--font-jetbrains-mono)', ...fontFamily.mono],
       },
     },
   },
