@@ -1,13 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
 import { format, parseISO } from 'date-fns';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
 
-import { getAllPosts } from '@/lib/mdxapi';
-
+import PageTitle from '@/components/PageTitle/PageTitle';
 import Seo from '@/components/Seo';
 import Transition from '@/components/Transition/Transition';
-
+import { getAllPosts } from '@/lib/mdxapi';
 import { PostType } from '@/types';
 
 type IndexProps = {
@@ -19,38 +19,33 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
     <>
       <Seo templateTitle='Posts' />
       <Transition>
-        <div className='divide-gray-200 divide-y min-h-main dark:divide-gray-700'>
-          <div className='pb-8 pt-6 space-y-2 md:space-y-5'>
-            <h1 className='font-extrabold leading-9 text-3xl text-gray-900 tracking-tight sm:leading-10 sm:text-4xl md:leading-14 md:text-6xl dark:text-gray-100'>
-              Posts
-            </h1>
-          </div>
-          <div className='container py-12'>
-            <div className='gap-x-2 gap-y-6 grid grid-cols-1'>
-              {posts.map((post) => (
-                <article key={post.slug} className='mt-12'>
-                  <p className='mb-1 text-gray-500 text-sm dark:text-gray-400'>
-                    {format(parseISO(post.date), 'MMMM dd, yyyy')}
-                  </p>
-                  <h1 className='mb-2 text-xl'>
-                    <Link
-                      as={`/posts/${post.slug}`}
-                      href='/posts/[slug]'
-                      className='text-gray-900 dark:hover:text-blue-400 dark:text-white'
-                    >
-                      {post.title}
-                    </Link>
-                  </h1>
-                  <p className='mb-3'>{post.description}</p>
-                  <p>
-                    <Link as={`/posts/${post.slug}`} href='/posts/[slug]'>
-                      Read More
-                    </Link>
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
+        <PageTitle>Posts</PageTitle>
+        <div className='py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-5 min-h-main'>
+          {posts.map(({ date, slug, title, image }) => (
+            <Link
+              as={`/posts/${slug}`}
+              href='/posts/[slug]'
+              className='group peer relative block w-full focus:outline-dotted focus:outline-2 focus:outline-slate-600 hover:border-dashed hover:border-2 transition-all duration-200 hover:p-3 hover:rounded-md hover:bg-slate-200 hover:dark:bg-slate-800'
+              key={slug}
+            >
+              <div className='rounded-[10px] justify-start items-start'>
+                <img
+                  className='focus-ring aspect-square w-full rounded-lg object-cover object-center transition-opacity'
+                  src={image}
+                  title={title}
+                  alt={title}
+                />
+                <div className='flex flex-col'>
+                  <div className='mt-8 text-sm font-medium text-slate-500'>
+                    {format(parseISO(date), 'MMMM dd, yyyy')}
+                  </div>
+                  <div className='text-xl font-medium md:text-3xl text-black dark:text-white mt-4'>
+                    {title}
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </Transition>
     </>
@@ -58,7 +53,14 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = getAllPosts(['date', 'description', 'slug', 'title', 'image']);
+  const posts = getAllPosts([
+    'date',
+    'description',
+    'slug',
+    'title',
+    'image',
+    'author',
+  ]);
   return {
     props: { posts },
   };

@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
+import { cloneElement } from 'react';
 
+import UnstyledLink from '@/components/Links/UnstyledLink';
 import Seo from '@/components/Seo';
+import { socialAccounts } from '@/constants';
 
 const HomePage = () => {
   return (
@@ -14,15 +17,28 @@ const HomePage = () => {
           >
             <div className='mb-8'>
               <h1 className='font-medium mt-8 text-3xl text-justify text-primary md:leading-snug md:text-5xl dark:text-gray-100'>
-                <span>I am </span>
-                <span className='duration-300 text-blue-500 underline'> Sezer Esim</span>
-                ,
+                <span className='underline'>Sezer Esim</span>
                 <br />
-                <span>a software engineer</span>
+                <div className='inline-flex items-center'>
+                  <span>Software Engineer</span>
+                </div>
               </h1>
+              <div className='flex flex-wrap gap-8 items-center  dark:text-gray-100 mt-4'>
+                {socialAccounts.map((el, key) => (
+                  <UnstyledLink
+                    key={key}
+                    href={el.url}
+                    className='text-slate-600 dark:text-slate-300'
+                    aria-label={el.name}
+                  >
+                    {cloneElement(<el.icon />, {
+                      className: 'h-6 w-6',
+                    })}
+                  </UnstyledLink>
+                ))}
+              </div>
             </div>
           </motion.div>
-          <p className='mb-9 text-justify text-primary dark:text-gray-400'></p>
         </div>
       </div>
     </>
