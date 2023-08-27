@@ -19,7 +19,7 @@ describe('ProjectCard', () => {
         githubLink={cartData.githubLink}
         image={cartData.image}
         name={cartData.name}
-      />
+      />,
     );
     expect(container).toBeInTheDocument();
   });
@@ -31,7 +31,7 @@ describe('ProjectCard', () => {
         githubLink={cartData.githubLink}
         image={cartData.image}
         name='sezer'
-      />
+      />,
     );
     expect(getByText('sezer')).toBeInTheDocument();
   });

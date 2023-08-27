@@ -1,26 +1,50 @@
+/** @type {import('tailwindcss').Config} */
+
 /* eslint-disable @typescript-eslint/no-var-requires */
 const plugin = require('tailwindcss/plugin');
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
 /** @type {import("@types/tailwindcss/tailwind-config").TailwindConfig } */
+
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
-  darkMode: 'class',
+  content: [
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+  ],
+  darkMode: ['class'],
   theme: {
-    extend: {
-      fontFamily: {
-        primary: ['Poppins', ...fontFamily.sans],
-        secondary: ['JetBrains Mono', ...fontFamily.sans],
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px',
       },
-      colors: {
-        primary: {
-          DEFAULT: '#21243D',
+    },
+    extend: {
+      keyframes: {
+        'accordion-down': {
+          from: { height: 0 },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
-        'light-blue': '#EDF7FA',
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: 0 },
+        },
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+      },
+      fontFamily: {
+        primary: ['Inter', ...fontFamily.sans],
+        secondary: ['JetBrains Mono', ...fontFamily.sans],
       },
     },
   },
   plugins: [
+    require('tailwindcss-animate'),
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     plugin(function ({ addVariant }) {

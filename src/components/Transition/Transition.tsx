@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { FC } from 'react';
+
 import { TransitionProps } from './Transition.types';
 
 const Transition: FC<TransitionProps> = (props) => {

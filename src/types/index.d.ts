@@ -12,6 +12,7 @@ export interface IPost {
 export type ISocialAccount = {
   name: 'Linkedin' | 'Github' | 'Twitter' | 'Instagram';
   url: string;
+  icon?: ForwardRefExoticComponent<IconProps & RefAttributes<SVGSVGElement>>;
 };
 
 export type IProject = {

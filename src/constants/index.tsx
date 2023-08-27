@@ -1,21 +1,32 @@
+import {
+  GitHubLogoIcon,
+  InstagramLogoIcon,
+  LinkedInLogoIcon,
+  TwitterLogoIcon,
+} from '@radix-ui/react-icons';
+
 import { IProject, ISocialAccount } from '@/types';
 
 export const socialAccounts: ISocialAccount[] = [
   {
     name: 'Linkedin',
     url: 'https://www.linkedin.com/in/sezeresim',
+    icon: LinkedInLogoIcon,
   },
   {
     name: 'Github',
     url: 'https://www.github.com/sezeresim',
+    icon: GitHubLogoIcon,
   },
   {
     name: 'Twitter',
     url: 'https://twitter.com/sezeeresim',
+    icon: TwitterLogoIcon,
   },
   {
     name: 'Instagram',
     url: 'https://www.instagram.com/sezeresim',
+    icon: InstagramLogoIcon,
   },
 ];
 

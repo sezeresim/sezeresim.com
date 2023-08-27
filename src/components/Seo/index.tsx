@@ -53,19 +53,44 @@ const Seo: FC<SeoProps> = (props) => {
       {meta.date && (
         <>
           <meta property='article:published_time' content={meta.date} />
-          <meta name='publish_date' property='og:publish_date' content={meta.date} />
-          <meta name='author' property='article:author' content='Theodorus Clarence' />
+          <meta
+            name='publish_date'
+            property='og:publish_date'
+            content={meta.date}
+          />
+          <meta
+            name='author'
+            property='article:author'
+            content='Theodorus Clarence'
+          />
         </>
       )}
 
       {/* Favicons */}
-      <link rel='apple-touch-icon' sizes='180x180' href='/static/apple-touch-icon.png' />
-      <link rel='icon' type='image/png' sizes='32x32' href='/static/favicon-32x32.png' />
-      <link rel='icon' type='image/png' sizes='16x16' href='/static/favicon-16x16.png' />
+      <link
+        rel='apple-touch-icon'
+        sizes='180x180'
+        href='/static/apple-touch-icon.png'
+      />
+      <link
+        rel='icon'
+        type='image/png'
+        sizes='32x32'
+        href='/static/favicon-32x32.png'
+      />
+      <link
+        rel='icon'
+        type='image/png'
+        sizes='16x16'
+        href='/static/favicon-16x16.png'
+      />
       <link rel='manifest' href='/static/site.webmanifest' />
 
       <meta name='msapplication-TileColor' content='#ffffff' />
-      <meta name='msapplication-TileImage' content='/static/ms-icon-144x144.png' />
+      <meta
+        name='msapplication-TileImage'
+        content='/static/ms-icon-144x144.png'
+      />
       <meta name='theme-color' content='#ffffff' />
     </Head>
   );

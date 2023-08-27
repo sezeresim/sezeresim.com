@@ -36,20 +36,26 @@ type PostPageProps = {
   slug: string;
 };
 
-const PostPage = ({ source, frontMatter, slug }: PostPageProps): JSX.Element => {
+const PostPage = ({
+  source,
+  frontMatter,
+  slug,
+}: PostPageProps): JSX.Element => {
   return (
     </* customMeta={customMeta} */>
-      <Seo image={`https://s.vercel.app/api?url=${slug}&width=1280&height=720`} />
+      <Seo
+        image={`https://s.vercel.app/api?url=${slug}&width=1280&height=720`}
+      />
       <Transition>
-        <div className='min-h-main dark:divide-gray-700'>
+        <div className='min-h-main dark:divide-slate-700'>
           <div className='pb-8 pt-6 space-y-2 md:space-y-5'>
-            <h1 className='font-extrabold leading-9 text-3xl text-gray-900 tracking-tight sm:leading-10 sm:text-4xl md:leading-14 md:text-6xl dark:text-gray-100'>
+            <h1 className='font-extrabold leading-9 text-3xl text-slate-900 tracking-tight sm:leading-10 sm:text-4xl md:leading-14 md:text-6xl dark:text-slate-100'>
               {frontMatter.title}
             </h1>{' '}
-            <p className='mb-10 text-gray-500 text-sm dark:text-gray-400'>
+            <p className='mb-10 text-slate-500 text-sm dark:text-slate-400'>
               {frontMatter.author as string}
             </p>
-            <p className='mb-10 text-gray-500 text-sm dark:text-gray-400'>
+            <p className='mb-10 text-slate-500 text-sm dark:text-slate-400'>
               {format(parseISO(frontMatter.date as string), 'MMMM dd, yyyy')}
             </p>{' '}
           </div>
