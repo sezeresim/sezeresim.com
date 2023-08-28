@@ -1,22 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
-import { format, parseISO } from 'date-fns';
+import { allPosts } from 'contentlayer/generated';
+import { compareDesc, format, parseISO } from 'date-fns';
 import Link from 'next/link';
 import React from 'react';
 
 import PageTitle from '@/components/PageTitle/PageTitle';
 import Transition from '@/components/Transition/Transition';
-import { getAllPosts } from '@/lib/mdxapi';
 
 export const getPosts = async () => {
-  const posts = getAllPosts([
-    'date',
-    'description',
-    'slug',
-    'title',
-    'image',
-    'author',
-  ]);
-  return posts;
+  return allPosts.sort((a, b) =>
+    compareDesc(new Date(a.date), new Date(b.date)),
+  );
 };
 
 export const Index = async () => {
@@ -25,12 +19,11 @@ export const Index = async () => {
     <Transition>
       <PageTitle>Posts</PageTitle>
       <div className='py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-5 min-h-main'>
-        {posts.map(({ date, slug, title, image }) => (
+        {posts.map(({ date, title, image, url }) => (
           <Link
-            as={`/posts/${slug}`}
-            href='/posts/[slug]'
+            href={url}
             className='group peer relative block w-full focus:outline-dotted focus:outline-2 focus:outline-slate-600 hover:border-dashed hover:border-2 transition-all duration-200 hover:p-3 hover:rounded-md hover:bg-slate-200 hover:dark:bg-slate-800'
-            key={slug}
+            key={url}
           >
             <div className='rounded-[10px] justify-start items-start'>
               <img
