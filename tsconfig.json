@@ -15,16 +15,23 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
+      "contentlayer/generated": ["./.contentlayer/generated"],
       "@/*": ["./src/*"]
     },
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "tailwind.config.js"
+    "tailwind.config.js",
+    ".contentlayer/generated"
   ],
   "exclude": ["node_modules"],
   "moduleResolution": ["node_modules", ".next", "node"]

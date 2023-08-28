@@ -64,11 +64,11 @@
   }
 
   .prose pre {
-    @apply bg-gray-50 border border-gray-200 dark:bg-gray-900 dark:border-gray-700;
+    @apply border border-gray-200  dark:border-gray-700;
   }
 
   .prose code {
-    @apply bg-gray-100 border border-gray-100 px-1 py-0.5 rounded-lg text-gray-800 dark:bg-gray-900 dark:border-gray-800 dark:text-gray-200;
+    @apply border border-gray-100 px-1 py-0.5 rounded-lg text-gray-800  dark:border-gray-800 dark:text-gray-200;
   }
 
   .prose pre code {
@@ -145,7 +145,7 @@
 
   code[class*='language-'],
   pre[class*='language-'] {
-    @apply font-secondary p-4 text-gray-800 dark:text-gray-50;
+    @apply font-mono p-4 text-gray-800 dark:text-gray-50;
   }
 
   pre::-webkit-scrollbar {
@@ -155,14 +155,6 @@
   pre {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
-  }
-
-  .rehype-code-title {
-    @apply bg-gray-200 border border-b-0 border-gray-200 font-bold font-mono px-5 py-3 rounded-t-lg text-gray-800 text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200;
-  }
-
-  .rehype-code-title + pre {
-    @apply mt-0 rounded-t-none;
   }
 
   .highlight-line {
