@@ -7,13 +7,13 @@ import React from 'react';
 import PageTitle from '@/components/PageTitle/PageTitle';
 import Transition from '@/components/Transition/Transition';
 
-export const getPosts = async () => {
+const getPosts = async () => {
   return allPosts.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date)),
   );
 };
 
-export const Index = async () => {
+const Index = async () => {
   const posts = await getPosts();
   return (
     <Transition>
