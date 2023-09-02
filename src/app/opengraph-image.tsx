@@ -12,14 +12,17 @@ export const size = {
 
 export const contentType = 'image/png';
 
+export const getInterSemiBoldFont = async () => {
+  const response = await fetch(
+    new URL('@/assets/Inter-SemiBold.ttf', import.meta.url),
+  );
+  const font = await response.arrayBuffer();
+  return font;
+};
+
 export default async function Image() {
-  /*  const interSemiBold = fetch(
-    new URL('./Inter-SemiBold.ttf', import.meta.url),
-  ).then((res) => res.arrayBuffer());
- */
   return new ImageResponse(
     (
-      // ImageResponse JSX element
       <div
         style={{
           fontSize: 128,
@@ -37,14 +40,14 @@ export default async function Image() {
     ),
     {
       ...size,
-      /*  fonts: [
+      fonts: [
         {
           name: 'Inter',
-          data: await interSemiBold,
+          data: await getInterSemiBoldFont(),
           style: 'normal',
           weight: 400,
         },
-      ], */
+      ],
     },
   );
 }
