@@ -25,17 +25,30 @@ export default async function Image() {
     (
       <div
         style={{
-          fontSize: 128,
+          fontSize: '2.5rem',
           background: 'white',
           width: '100%',
           height: '100%',
           display: 'flex',
-          alignItems: 'center',
+          alignItems: 'start',
           justifyContent: 'start',
+          flexDirection: 'column',
         }}
       >
-        <h1>{SHARED_METADATA.title}</h1>
-        <p>{SHARED_METADATA.description}</p>
+        <div
+          style={{
+            color: 'black',
+          }}
+        >
+          {SHARED_METADATA.title}
+        </div>
+        <div
+          style={{
+            color: 'black',
+          }}
+        >
+          {SHARED_METADATA.description}
+        </div>
       </div>
     ),
     {
