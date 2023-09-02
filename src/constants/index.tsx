@@ -7,6 +7,12 @@ import {
 
 import { IProject, ISocialAccount } from '@/types';
 
+export const PROFILES = {
+  twitter: {
+    username: 'sezeeresim',
+  },
+};
+
 export const socialAccounts: ISocialAccount[] = [
   {
     name: 'Linkedin',

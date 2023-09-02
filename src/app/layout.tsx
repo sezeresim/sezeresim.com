@@ -1,9 +1,12 @@
-import '@/styles/globals.css';
+import './globals.css';
 
 import { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 
+import { PROFILES } from '@/constants';
+
 import Providers from './providers';
+import { SHARED_METADATA } from './shared-metadata';
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
@@ -27,6 +30,31 @@ export default function RootLayout({
       lang='en'
       className={`${interFont.variable} ${jetbrainsMono.variable}`}
     >
+      <head>
+        <link
+          rel='apple-touch-icon'
+          sizes='180x180'
+          href='/static/apple-touch-icon.png'
+        />
+        <link
+          rel='icon'
+          type='image/png'
+          sizes='32x32'
+          href='/static/favicon-32x32.png'
+        />
+        <link
+          rel='icon'
+          type='image/png'
+          sizes='16x16'
+          href='/static/favicon-16x16.png'
+        />
+        <link rel='manifest' href='/static/site.webmanifest' />
+        <meta name='msapplication-TileColor' content='#ffffff' />
+        <meta
+          name='msapplication-TileImage'
+          content='/static/ms-icon-144x144.png'
+        />
+      </head>
       <body>
         <Providers> {children}</Providers>
       </body>
@@ -35,8 +63,44 @@ export default function RootLayout({
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://sezeresim.vercel.app'),
+  robots: {
+    index: true,
+    follow: true,
+  },
   applicationName: 'Sezer Esim',
-  title: 'Sezer Esim',
-  description: 'Sezer Esim',
-  robots: 'follow, index',
+  title: {
+    template: `%s | ${SHARED_METADATA.title}`,
+    default: SHARED_METADATA.title,
+  },
+  description: SHARED_METADATA.description,
+  openGraph: {
+    type: 'website',
+    siteName: SHARED_METADATA.title,
+    description: SHARED_METADATA.description,
+    title: {
+      template: `%s | ${SHARED_METADATA.title}`,
+      default: SHARED_METADATA.title,
+    },
+    locale: 'en',
+    url: '/',
+  },
+  alternates: {
+    canonical: '/',
+  },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: `@${PROFILES.twitter.username}`,
+    title: {
+      template: `%s | ${SHARED_METADATA.title}`,
+      default: SHARED_METADATA.title,
+    },
+    description: SHARED_METADATA.description,
+    creator: `@${PROFILES.twitter.username}`,
+  },
 };

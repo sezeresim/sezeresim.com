@@ -1,3 +1,5 @@
+import { Metadata } from 'next';
+
 import PageTitle from '@/components/PageTitle/PageTitle';
 import ProjectCard from '@/components/ProjectCard/ProjectCard';
 import Transition from '@/components/Transition/Transition';
@@ -7,7 +9,7 @@ async function getProjects() {
   return projects;
 }
 
-const Projects = async () => {
+export default async function Index() {
   const projects = await getProjects();
 
   return (
@@ -27,6 +29,8 @@ const Projects = async () => {
       </div>
     </Transition>
   );
-};
+}
 
-export default Projects;
+export const metadata: Metadata = {
+  title: 'Projects',
+};

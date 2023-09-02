@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { allPosts } from 'contentlayer/generated';
 import { compareDesc, format, parseISO } from 'date-fns';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import React from 'react';
 
@@ -13,7 +14,7 @@ const getPosts = async () => {
   );
 };
 
-const Index = async () => {
+export default async function Index() {
   const posts = await getPosts();
   return (
     <Transition>
@@ -46,6 +47,8 @@ const Index = async () => {
       </div>
     </Transition>
   );
-};
+}
 
-export default Index;
+export const metadata: Metadata = {
+  title: 'Posts',
+};
