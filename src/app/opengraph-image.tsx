@@ -1,5 +1,7 @@
 import { ImageResponse } from 'next/server';
 
+import OgImage from '@/components/OGImage/OgImage';
+
 import { SHARED_METADATA } from './shared-metadata';
 
 export const runtime = 'edge';
@@ -23,19 +25,10 @@ export const getInterSemiBoldFont = async () => {
 export default async function Image() {
   return new ImageResponse(
     (
-      <div
-        style={{
-          fontSize: 128,
-          background: 'white',
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        {SHARED_METADATA.title}
-      </div>
+      <OgImage
+        title={SHARED_METADATA.title}
+        description={SHARED_METADATA.description}
+      />
     ),
     {
       ...size,
