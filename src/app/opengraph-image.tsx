@@ -10,7 +10,7 @@ export const size = {
   height: SHARED_METADATA.image.height,
 };
 
-export const contentType = 'image/png';
+export const contentType = SHARED_METADATA.image.type;
 
 export const getInterSemiBoldFont = async () => {
   const response = await fetch(
@@ -25,30 +25,16 @@ export default async function Image() {
     (
       <div
         style={{
-          fontSize: '2.5rem',
+          fontSize: 128,
           background: 'white',
           width: '100%',
           height: '100%',
           display: 'flex',
-          alignItems: 'start',
-          justifyContent: 'start',
-          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
-        <div
-          style={{
-            color: 'black',
-          }}
-        >
-          {SHARED_METADATA.title}
-        </div>
-        <div
-          style={{
-            color: 'black',
-          }}
-        >
-          {SHARED_METADATA.description}
-        </div>
+        {SHARED_METADATA.title}
       </div>
     ),
     {
