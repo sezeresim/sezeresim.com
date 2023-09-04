@@ -43,7 +43,7 @@ const OgImage = (props: Props) => {
             >
               <span
                 style={{
-                  fontSize: '56px',
+                  fontSize: '96px',
                   color: '#222',
                   paddingTop: '32px',
                   fontFamily: "'Inter', sans-serif",
@@ -54,7 +54,7 @@ const OgImage = (props: Props) => {
               </span>
               <span
                 style={{
-                  fontSize: '28px',
+                  fontSize: '48px',
                   color: '#222',
                   fontFamily: "'Inter', sans-serif",
                   fontWeight: 500,
@@ -64,7 +64,7 @@ const OgImage = (props: Props) => {
               </span>
             </div>
           </div>
-          <span
+          {/* <span
             style={{
               fontSize: '18px',
               color: '#222',
@@ -73,7 +73,7 @@ const OgImage = (props: Props) => {
             }}
           >
             {props.description}
-          </span>
+          </span> */}
         </div>
       </div>
     </div>
