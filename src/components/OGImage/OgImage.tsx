@@ -12,7 +12,8 @@ const OgImage = (props: Props) => {
         display: 'flex',
         width: '100%',
         height: '100%',
-        background: 'linear-gradient(to right, #e8cbc0, #636fa4)',
+        background:
+          'linear-gradient(90deg, rgba(2,6,23,1) 52%, rgba(0,212,255,1) 100%)',
         padding: '32px',
       }}
     >
