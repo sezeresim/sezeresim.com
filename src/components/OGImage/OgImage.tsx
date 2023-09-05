@@ -2,10 +2,11 @@ import React from 'react';
 
 type Props = {
   title: string;
-  description?: string;
+  subTitle: string;
 };
 
 const OgImage = (props: Props) => {
+  const { title, subTitle } = props;
   return (
     <div
       style={{
@@ -51,7 +52,7 @@ const OgImage = (props: Props) => {
                   fontWeight: 700,
                 }}
               >
-                {props.title}
+                {title}
               </span>
               <span
                 style={{
@@ -61,22 +62,10 @@ const OgImage = (props: Props) => {
                   fontWeight: 500,
                 }}
               >
-                Software Engineer
+                {subTitle}
               </span>
             </div>
           </div>
-          {props?.description && (
-            <span
-              style={{
-                fontSize: '32px',
-                color: '#fff',
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 500,
-              }}
-            >
-              {props.description}
-            </span>
-          )}
         </div>
       </div>
     </div>

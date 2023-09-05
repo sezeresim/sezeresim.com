@@ -15,15 +15,18 @@ export const size = {
 export const contentType = SHARED_METADATA.image.type;
 
 export default async function Image() {
-  return new ImageResponse(<OgImage title={SHARED_METADATA.title} />, {
-    ...size,
-    fonts: [
-      {
-        name: 'Inter',
-        data: await getInterSemiBoldFont(),
-        style: 'normal',
-        weight: 400,
-      },
-    ],
-  });
+  return new ImageResponse(
+    <OgImage title={SHARED_METADATA.title} subTitle='Software Engineer' />,
+    {
+      ...size,
+      fonts: [
+        {
+          name: 'Inter',
+          data: await getInterSemiBoldFont(),
+          style: 'normal',
+          weight: 400,
+        },
+      ],
+    },
+  );
 }
