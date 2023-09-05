@@ -19,7 +19,7 @@ export default async function Index() {
   return (
     <Transition>
       <PageTitle>Posts</PageTitle>
-      <div className='py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-5 min-h-main'>
+      <div className='py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-5'>
         {posts.map(({ date, title, image, url }) => (
           <Link
             href={url}
@@ -28,7 +28,7 @@ export default async function Index() {
           >
             <div className='rounded-[10px] justify-start items-start'>
               <img
-                className='focus-ring aspect-square w-full rounded-lg object-cover object-center transition-opacity'
+                className='focus-ring aspect-square w-full rounded-lg object-contain object-center transition-opacity'
                 src={image}
                 title={title}
                 alt={title}

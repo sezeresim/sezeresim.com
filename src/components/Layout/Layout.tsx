@@ -7,7 +7,7 @@ type ILayoutProps = {
 
 const Layout = ({ children }: ILayoutProps) => {
   return (
-    <div className='bg-white dark:bg-slate-950 min-h-main'>
+    <div className='bg-white dark:bg-slate-950 min-h-screen'>
       <Header />
       <main className='layout'>{children}</main>
     </div>
