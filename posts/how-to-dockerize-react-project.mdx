@@ -1,0 +1,77 @@
+---
+title: React projesi nasıl dockerize edilir ?
+description: React projesi nasıl dockerize edilir ?
+date: '2023-09-05'
+image: '/images/01-symbol_blue-docker-logo.png'
+author: Sezer Esim
+---
+
+Bu yazımda bir create-app-react ile oluşturulmuş bir react.js projesini hızlı bir şekilde docker ile dockerize etmeyi anlatacağım.
+
+## **1.CRA ile React.js projesi oluşturma.**
+
+Öncelikle bir terminal yardımıyla bir react.js projesi oluşturalım.Bu projede hiç bir değişiklik yapılmayacaktır.
+
+![https://miro.medium.com/v2/resize:fit:1400/1*XFRbdTCG2Y0mmqBL3MXeRw.png](https://miro.medium.com/v2/resize:fit:1400/1*XFRbdTCG2Y0mmqBL3MXeRw.png)
+
+CRA projesi oluşturma
+
+## **2.Docker dosyalarını oluşturma**
+
+Bir docker projesinde öncelikle ben bir .dockerignore dosyasını oluşturuyorum.
+
+Bildiğiniz gibi react.js bir çok npm paketine ihtiyaç duyuyor.Biz bunları sunucuya yüklemek istemeyiz yada dockerize ettiğimiz uygulamaya koymak istemeyiz.
+
+Aşağıdaki kod yardımı ile .dockerignore dosyasını oluşturalım.
+
+.dockerignore
+
+![https://miro.medium.com/v2/resize:fit:1400/1*OpBMeZBVgXgfrpgSzYOqVQ.png](https://miro.medium.com/v2/resize:fit:1400/1*OpBMeZBVgXgfrpgSzYOqVQ.png)
+
+.dockerignore dosyası
+
+Bundan sonraki aşamada Dockerfile oluşturacağız.Bunun içi aşağıda kodları bulabilirsiniz.
+
+Dockerfile
+
+![https://miro.medium.com/v2/resize:fit:1400/1*4gYh5IDg9lOG5a2Z2KN7vA.png](https://miro.medium.com/v2/resize:fit:1400/1*4gYh5IDg9lOG5a2Z2KN7vA.png)
+
+Burda satır satır açıklama yapacağım.
+
+1. İlk satırda docker imajımızın temelini oluşturan node:14-alpine yüklüyoruz.Bu sayede uygulamamız node.js desteğine kavuşuyor.
+2. Burda uygulamamızın çalışma klasörünü belirtiyoruz.
+3. Burda dosyaları çalışma klasörüne kopyalıyoruz.
+4. Gerekli npm bağlılıklarını yüklüyoruz.
+5. Build aldıktan sonra çalıştırmak için live-server docker uygulamamızın global olarak ekliyoruz.
+6. Build işlemini gerçekleştiriyoruz.
+7. Docker uygulamamızı çalıştırdığımızda live-server ile build klasörünü çalıştırmak istiyoruz.Bunun için “live-server build” komutunu çalıştırıyoruz.
+
+Bu aşamadan sonra docker-compose.yml dosyamızı ilerde oluşabilecek enviroment vb. işler için oluşturmak istedim.Ayrıca burda port olarak 3000 portunu belirledim.Çünkü live-server kendisi 8080 üzerinden uygulamayı çalıştırıyor.Bende bunu kendi bilgisayarımda görmek için dışarıya 3000 portu olarak aktardım.
+
+Kodu aşağıda görebilirsiniz.
+
+docker-compose.yml
+
+![https://miro.medium.com/v2/resize:fit:1400/1*I_ndjHUFVRtzs1H5jy3Zsw.png](https://miro.medium.com/v2/resize:fit:1400/1*I_ndjHUFVRtzs1H5jy3Zsw.png)
+
+Bunları yaptıktan sonra.Uygulamızın içinde docker compose build dememiz yeterli olacaktır.Bu sayede uygulamamız bir dockerize edilerek bir docker image oluşturulacak.
+
+![https://miro.medium.com/v2/resize:fit:1400/1*9D025WfwTnAAm6R5V-4vEA.png](https://miro.medium.com/v2/resize:fit:1400/1*9D025WfwTnAAm6R5V-4vEA.png)
+
+Bu işlem bittikten sonra “docker images” komutu ile oluşturulan image görelim.
+
+![https://miro.medium.com/v2/resize:fit:1400/1*Dnwf4HOGBUfoWI-xFkutMw.png](https://miro.medium.com/v2/resize:fit:1400/1*Dnwf4HOGBUfoWI-xFkutMw.png)
+
+Bundan sonra “docker compose up” komutu ile oluşan image ayağa kaldıralım. Aşağıda da görüleceği üzere uygulamamamız localhost:8080 üzerinden ayağa kalktı.Fakat biz bunu dışarıya 3000 portu üzerinden vermiştik.
+
+![https://miro.medium.com/v2/resize:fit:1400/1*onlagb4YRHHnE69G_Iuncg.png](https://miro.medium.com/v2/resize:fit:1400/1*onlagb4YRHHnE69G_Iuncg.png)
+
+Eğer localhost:3000 gidersek aşağıdaki gibi uygulamızı görebiliriz.
+
+![https://miro.medium.com/v2/resize:fit:1400/1*I-Mg40eNORkzq6gDZcp46A.png](https://miro.medium.com/v2/resize:fit:1400/1*I-Mg40eNORkzq6gDZcp46A.png)
+
+Okuduğunuz için teşekkür ederim.
+
+Sağlıklı günler.
+
+<br />

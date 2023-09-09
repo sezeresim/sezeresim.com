@@ -7,7 +7,7 @@ import MotionDivProvider from './motiondiv';
 
 export default function Home() {
   return (
-    <div className='flex flex-col justify-center min-h-main md:flex-row md:items-center md:justify-between'>
+    <div className='flex flex-col justify-center md:flex-row md:items-center md:justify-between min-h-main'>
       <div className='order-1 w-full md:mr-28'>
         <MotionDivProvider>
           <div className='mb-8'>

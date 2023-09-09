@@ -1,3 +1,4 @@
+import { allPosts } from 'contentlayer/generated';
 import { ImageResponse } from 'next/server';
 
 import { SHARED_METADATA } from '@/app/shared-metadata';
@@ -14,9 +15,15 @@ export const size = {
 
 export const contentType = SHARED_METADATA.image.type;
 
-export default async function Image() {
+export default async function Image({ params }: { params: { slug: string } }) {
+  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
   return new ImageResponse(
-    <OgImage title={SHARED_METADATA.title} subTitle='Software Engineer' />,
+    (
+      <OgImage
+        title={post?.title || 'Unknown'}
+        subTitle={SHARED_METADATA?.title}
+      />
+    ),
     {
       ...size,
       fonts: [
