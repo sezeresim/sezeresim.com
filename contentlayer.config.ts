@@ -51,16 +51,21 @@ export default makeSource({
   mdx: {
     rehypePlugins: [
       rehypeSlug,
-      rehypePrettyCode,
+      remarkGfm,
+      [
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        rehypePrettyCode,
+        {},
+      ],
       [
         rehypeAutolinkHeadings,
         {
           properties: {
-            className: ['anchor'],
+            className: 'anchor',
           },
         },
       ],
     ],
-    remarkPlugins: [remarkGfm],
   },
 });

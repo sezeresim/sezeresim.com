@@ -29,7 +29,7 @@
    * For the mdx blogs 
    */
   .prose {
-    @apply min-w-full dark:text-white text-slate-900;
+    @apply min-w-full dark:text-white text-slate-900 pb-6;
   }
   .anchor {
     @apply absolute invisible no-underline;
