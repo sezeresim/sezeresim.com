@@ -19,7 +19,7 @@ export default async function Index() {
   return (
     <Transition>
       <PageTitle>Posts</PageTitle>
-      <div className='py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-5'>
+      <div className='py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-5'>
         {posts.map(({ date, title, image, url }) => (
           <Link
             href={url}
