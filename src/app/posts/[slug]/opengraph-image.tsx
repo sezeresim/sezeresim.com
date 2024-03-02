@@ -1,5 +1,5 @@
 import { allPosts } from 'contentlayer/generated';
-import { ImageResponse } from 'next/server';
+import { ImageResponse } from 'next/og';
 
 import { SHARED_METADATA } from '@/app/shared-metadata';
 import OgImage from '@/components/OGImage/OgImage';
