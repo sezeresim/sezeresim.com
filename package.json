@@ -6,7 +6,6 @@
   "engines": {
     "node": ">=20.10.0"
   },
-  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
