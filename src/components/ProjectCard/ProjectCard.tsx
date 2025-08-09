@@ -1,7 +1,8 @@
 'use client';
-import { ArrowUpRight } from 'lucide-react';
-import Image from 'next/image';
 import { FC } from 'react';
+import Image from 'next/image';
+
+import { ArrowUpRight } from 'lucide-react';
 
 import GrommetIconsGithub from '@/components/Icons/GrommetIconsGithub';
 import UnstyledLink from '@/components/Links/UnstyledLink';
@@ -24,9 +25,7 @@ const ProjectCard: FC<IProjectCard> = ({
             alt='title'
             src={image ?? '/images/no-image-available.png'}
             fill
-            style={{
-              objectFit: 'cover',
-            }}
+            style={{ objectFit: 'cover' }}
             onError={(e) => {
               e.currentTarget.src = '/images/no-image-available.png';
             }}

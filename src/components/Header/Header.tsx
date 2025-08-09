@@ -1,6 +1,7 @@
 'use client';
-import { BrainCircuit } from 'lucide-react';
 import Link from 'next/link';
+
+import { BrainCircuit } from 'lucide-react';
 
 import ThemeSwitch from '@/components/ThemeSwitch';
 import {
@@ -26,27 +27,21 @@ const Header = () => {
           aria-label='Home Page'
         >
           <BrainCircuit className='m-2' />
-          <span className='class="hidden font-bold sm:inline-block"'>
-            Sezer Esim
-          </span>
+          <span className='hidden font-bold sm:inline-block'>Sezer Esim</span>
         </Link>
         <div className='flex items-center space-x-1'>
           <NavigationMenu>
             <NavigationMenuList>
               {links.map(({ href, label }) => (
                 <NavigationMenuItem key={`${href}${label}`}>
-                  <Link
-                    href={href}
-                    legacyBehavior
-                    passHref
-                    aria-label={label + ' page'}
+                  <NavigationMenuLink
+                    asChild
+                    className={navigationMenuTriggerStyle()}
                   >
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
+                    <Link href={href} aria-label={`${label} page`}>
                       {label}
-                    </NavigationMenuLink>
-                  </Link>
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>

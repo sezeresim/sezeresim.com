@@ -1,12 +1,12 @@
-import './globals.css';
-
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 
 import { PROFILES } from '@/constants';
 
 import Providers from './providers';
 import { SHARED_METADATA } from './shared-metadata';
+
+import './globals.css';
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
@@ -20,6 +20,12 @@ const interFont = Inter({
   display: 'swap',
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -28,6 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang='en'
+      suppressHydrationWarning
       className={`${interFont.variable} ${jetbrainsMono.variable}`}
     >
       <head>
@@ -64,10 +71,7 @@ export default function RootLayout({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://sezeresim.vercel.app'),
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
   applicationName: 'Sezer Esim',
   title: {
     template: `%s | ${SHARED_METADATA.title}`,
@@ -85,14 +89,7 @@ export const metadata: Metadata = {
     locale: 'en',
     url: '/',
   },
-  alternates: {
-    canonical: '/',
-  },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-  },
+  alternates: { canonical: '/' },
   twitter: {
     card: 'summary_large_image',
     site: `@${PROFILES.twitter.username}`,
