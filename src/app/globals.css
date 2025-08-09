@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
 
 @layer base {
   .min-h-main {
@@ -27,7 +29,7 @@
    * For the mdx blogs 
    */
   .prose {
-    @apply min-w-full dark:text-white text-slate-900 pb-6;
+    @apply min-w-full pb-6 text-slate-900 dark:text-white;
   }
   .anchor {
     @apply absolute invisible no-underline;
@@ -40,12 +42,12 @@
     @apply visible;
   }
   .prose h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6,
+  .prose p {
     @apply dark:text-white text-slate-900;
   }
 
@@ -63,7 +65,7 @@
   }
 
   .prose pre {
-    @apply border border-gray-200  dark:border-gray-700;
+    @apply border border-gray-200 dark:border-gray-700;
   }
 
   .prose code {

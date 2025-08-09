@@ -12,7 +12,8 @@ module.exports = {
 
     /* Handle image imports
     https://jestjs.io/docs/webpack#handling-static-assets */
-    '^.+\\.(jpg|jpeg|png|gif|webp|avif|svg)$': '<rootDir>/__mocks__/fileMock.js',
+    '^.+\\.(jpg|jpeg|png|gif|webp|avif|svg)$':
+      '<rootDir>/__mocks__/fileMock.js',
 
     // Handle absolute import and module path alias
     '^@/(.*)$': '<rootDir>/src/$1',
@@ -24,7 +25,10 @@ module.exports = {
     https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object */
     '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
   },
-  transformIgnorePatterns: ['/node_modules/', '^.+\\.module\\.(css|sass|scss)$'],
+  transformIgnorePatterns: [
+    '/node_modules/',
+    '^.+\\.module\\.(css|sass|scss)$',
+  ],
 
   // https://nextjs.org/docs/testing#manual-setup-2
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],

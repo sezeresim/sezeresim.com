@@ -10,7 +10,6 @@ export default function Home() {
   return (
     <div className='flex flex-col justify-center md:flex-row md:items-center md:justify-between min-h-main'>
       <div className='order-1 w-full md:mr-28'>
-        {/* Animasyonlu giriş */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

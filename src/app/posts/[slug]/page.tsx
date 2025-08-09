@@ -8,15 +8,25 @@ import { Calendar, TimerIcon, UserCircle } from 'lucide-react';
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post._raw.flattenedPath }));
 
-export const generateMetadata = ({ params }: { params: { slug: string } }) => {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
-  if (!post) throw new Error(`Post not found for slug: ${params.slug}`);
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) => {
+  const { slug } = await params;
+  const post = allPosts.find((p) => p._raw.flattenedPath === slug);
+  if (!post) throw new Error(`Post not found for slug: ${slug}`);
   return { title: post.title } as Metadata;
 };
 
-const PostLayout = ({ params }: { params: { slug: string } }) => {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug);
-  if (!post) throw new Error(`Post not found for slug: ${params.slug}`);
+const PostLayout = async ({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) => {
+  const { slug } = await params;
+  const post = allPosts.find((p) => p._raw.flattenedPath === slug);
+  if (!post) throw new Error(`Post not found for slug: ${slug}`);
 
   const Content = getMDXComponent(post.body.code);
 

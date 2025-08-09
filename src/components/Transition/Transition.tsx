@@ -1,6 +1,7 @@
 'use client';
-import { AnimatePresence, motion } from 'framer-motion';
 import { FC } from 'react';
+
+import { AnimatePresence, motion } from 'framer-motion';
 
 import { TransitionProps } from './Transition.types';
 
