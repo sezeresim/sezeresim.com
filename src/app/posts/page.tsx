@@ -1,9 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import { allPosts } from 'contentlayer/generated';
-import { compareDesc, format, parseISO } from 'date-fns';
+import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import React from 'react';
+
+import { allPosts } from 'contentlayer/generated';
+import { compareDesc, format, parseISO } from 'date-fns';
 
 import PageTitle from '@/components/PageTitle/PageTitle';
 import Transition from '@/components/Transition/Transition';
@@ -23,7 +24,7 @@ export default async function Index() {
         {posts.map(({ date, title, image, url }) => (
           <Link
             href={url}
-            className='group peer relative block w-full focus:outline-dotted focus:outline-2 focus:outline-slate-600 hover:border-dashed hover:border-2 transition-all duration-200 hover:p-3 hover:rounded-md hover:bg-slate-200 hover:dark:bg-slate-800'
+            className='group peer relative block w-full focus:outline-dotted focus:outline-2 focus:outline-slate-600 hover:border-dashed hover:border-2 transition-all duration-200 hover:p-3 hover:rounded-md hover:bg-slate-200 dark:hover:bg-slate-800'
             key={url}
           >
             <div className='rounded-[10px] justify-start items-start'>
@@ -49,6 +50,4 @@ export default async function Index() {
   );
 }
 
-export const metadata: Metadata = {
-  title: 'Posts',
-};
+export const metadata: Metadata = { title: 'Posts' };
