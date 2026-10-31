@@ -5,12 +5,29 @@ import {
   TwitterLogoIcon,
 } from '@radix-ui/react-icons';
 
-import { IProject, ISocialAccount } from '@/types';
+import type { IProject, ISocialAccount } from '@/types';
+
+export const SITE = {
+  name: 'Sezer Esim',
+  title: 'Sezer Esim',
+  role: 'Software Engineer',
+  description:
+    'Software Engineer building web and mobile products with React, Next.js and React Native.',
+  url: 'https://sezeresim.vercel.app',
+  locale: 'en',
+};
+
+export const HOME = {
+  greeting: "Hi, I'm",
+  intro:
+    'I build web and mobile products with React, Next.js and React Native, and I write about the things I learn along the way.',
+  stack: ['TypeScript', 'React', 'Next.js', 'React Native', 'Node.js'],
+  tools: ['Tailwind CSS', 'Docker', 'Git', 'Jest', 'MDX', 'Vercel'],
+};
 
 export const PROFILES = {
-  twitter: {
-    username: 'sezeeresim',
-  },
+  twitter: { username: 'sezeeresim' },
+  github: { username: 'sezeresim' },
 };
 
 export const socialAccounts: ISocialAccount[] = [
@@ -21,7 +38,7 @@ export const socialAccounts: ISocialAccount[] = [
   },
   {
     name: 'Github',
-    url: 'https://www.github.com/sezeresim',
+    url: 'https://github.com/sezeresim',
     icon: GitHubLogoIcon,
   },
   {
@@ -40,25 +57,30 @@ export const projects: IProject[] = [
   {
     id: 'react-context-cli',
     name: 'rca-cli',
-    description: 'A cli tool to creating react context api',
+    description:
+      'A CLI tool that scaffolds React Context API boilerplate in seconds.',
     image: '',
     link: 'https://github.com/sezeresim/react-context-cli',
     githubLink: 'https://github.com/sezeresim/react-context-cli',
+    tags: ['Node.js', 'CLI', 'React'],
   },
   {
     id: 'domates',
     name: 'Domates',
-    description: `This is a android application for managing your daily tasks.Also it is a pomodoro timer.`,
+    description:
+      'An Android app for managing daily tasks with a built-in Pomodoro timer.',
     image: '/images/pomodoro.webp',
     link: 'https://play.google.com/store/apps/details?id=com.pomodorotracking',
     githubLink: 'https://github.com/sezeresim/domates-rn',
+    tags: ['React Native', 'Android'],
   },
   {
     id: 'memoryGame',
     name: 'Memory Game',
-    description: `This is a memory game.`,
+    description: 'A small card-matching memory game built with React.',
     image: '/images/memoryGame.png',
     link: 'https://matching-game-five.vercel.app/',
     githubLink: 'https://github.com/sezeresim/matching-game-react',
+    tags: ['React', 'Game'],
   },
 ];

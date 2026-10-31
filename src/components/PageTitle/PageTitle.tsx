@@ -1,15 +1,17 @@
-import React from 'react';
-
 type Props = {
   children?: React.ReactNode;
+  description?: string;
 };
 
-const PageTitle = ({ children }: Props) => {
+const PageTitle = ({ children, description }: Props) => {
   return (
-    <div className='pb-8 pt-6 space-y-2 md:space-y-5 border-b'>
-      <h1 className='font-extrabold leading-9 text-3xl text-gray-900 tracking-tight sm:leading-10 sm:text-4xl md:leading-14 md:text-6xl dark:text-gray-100'>
+    <div className='border-b border-slate-200 pt-10 pb-8 dark:border-slate-800'>
+      <h1 className='text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl'>
         {children}
       </h1>
+      {description ? (
+        <p className='mt-3 text-slate-600 dark:text-slate-400'>{description}</p>
+      ) : null}
     </div>
   );
 };

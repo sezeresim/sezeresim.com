@@ -1,9 +1,11 @@
+import { SITE } from '@/constants';
+
 export const SHARED_METADATA = {
-  title: 'Sezer Esim',
-  description: 'Software Engineer',
+  title: SITE.title,
+  description: SITE.description,
   image: {
-    width: 1280,
-    height: 720,
+    width: 1200,
+    height: 630,
     type: 'image/png',
   },
 };

@@ -4,4 +4,7 @@ export interface IProjectCard {
   description: string;
   githubLink: string;
   link: string;
+  tags?: string[];
+  /** Larger, side-by-side layout on wide screens. */
+  featured?: boolean;
 }
