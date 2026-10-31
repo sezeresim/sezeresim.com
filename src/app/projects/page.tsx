@@ -1,36 +1,36 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
+import { Stagger, StaggerItem } from '@/components/Motion/Stagger';
 import PageTitle from '@/components/PageTitle/PageTitle';
 import ProjectCard from '@/components/ProjectCard/ProjectCard';
 import Transition from '@/components/Transition/Transition';
 import { projects } from '@/constants';
 
-async function getProjects() {
-  return projects;
-}
+export const metadata: Metadata = {
+  title: 'Projects',
+  description: 'Open source tools, apps and experiments I have built.',
+  alternates: { canonical: '/projects' },
+};
 
-export default async function Index() {
-  const projects = await getProjects();
-
+export default function ProjectsPage() {
   return (
     <Transition>
-      <PageTitle>Projects</PageTitle>
-      <div className='py-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-5'>
-        {projects.map((el) => (
-          <ProjectCard
-            key={el.id}
-            link={el.link}
-            image={el.image}
-            name={el.name}
-            description={el.description}
-            githubLink={el.githubLink}
-          />
+      <PageTitle description='Open source tools, apps and experiments I have built.'>
+        Projects
+      </PageTitle>
+      <Stagger
+        inView={false}
+        className='grid grid-cols-1 gap-6 py-8 sm:grid-cols-2 lg:grid-cols-3'
+      >
+        {projects.map((project, i) => (
+          <StaggerItem
+            key={project.id}
+            className={i === 0 ? 'h-full sm:col-span-2' : 'h-full'}
+          >
+            <ProjectCard {...project} featured={i === 0} />
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
     </Transition>
   );
 }
-
-export const metadata: Metadata = {
-  title: 'Projects',
-};

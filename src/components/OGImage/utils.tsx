@@ -1,7 +1,5 @@
-export const getInterSemiBoldFont = async () => {
-  const response = await fetch(
-    new URL('@/assets/Inter-SemiBold.ttf', import.meta.url),
-  );
-  const font = await response.arrayBuffer();
-  return font;
-};
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
+
+export const getInterSemiBoldFont = () =>
+  readFile(join(process.cwd(), 'src/assets/Inter-SemiBold.ttf'));

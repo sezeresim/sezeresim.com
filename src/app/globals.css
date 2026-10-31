@@ -1,164 +1,744 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
+@plugin '@tailwindcss/typography';
+
 @custom-variant dark (&:where(.dark, .dark *));
-@custom-variant light (&:where(.light, .light *));
+
+@theme {
+  --color-background: #ffffff;
+  /* the CV sheet: real paper does not change colour with the OS theme */
+  --color-paper: #f6f1e6;
+  --color-ink: #1c2433;
+  --color-ribbon: #b3261e;
+}
+
+.dark {
+  --color-background: #050816;
+}
+
+@theme inline {
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    Roboto, sans-serif;
+  --font-mono:
+    var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
 
 @layer base {
-  .min-h-main {
-    min-height: calc(100vh - theme(spacing.20));
+  html {
+    scroll-behavior: smooth;
   }
 
-  .layout {
-    max-width: 1152px;
-    @apply mx-auto w-10/12;
+  body {
+    @apply overflow-x-clip bg-background text-slate-900 antialiased dark:text-slate-50;
+    background-image: radial-gradient(
+      ellipse 80% 50% at 50% -20%,
+      var(--color-sky-50),
+      transparent
+    );
   }
 
-  @media screen and (max-width: 768px) {
-    .layout {
-      @apply w-10/12;
+  .dark body {
+    background-image:
+      radial-gradient(
+        ellipse 80% 50% at 50% -20%,
+        color-mix(in oklab, var(--color-sky-500) 18%, transparent),
+        transparent
+      ),
+      radial-gradient(
+        ellipse 60% 40% at 100% 100%,
+        color-mix(in oklab, var(--color-violet-500) 8%, transparent),
+        transparent
+      );
+  }
+
+  ::selection {
+    @apply bg-sky-200 text-slate-900 dark:bg-sky-500/40 dark:text-white;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Theme change cross-fade (View Transitions API) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.45s;
+  animation-timing-function: ease-in-out;
+}
+
+@theme {
+  --animate-shimmer: shimmer 6s linear infinite;
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-marquee: marquee 40s linear infinite;
+
+  @keyframes shimmer {
+    to {
+      background-position: 200% center;
     }
   }
 
-  @media screen and (max-width: 640px) {
-    .layout {
-      @apply w-11/12;
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
     }
   }
 
-  /** 
-   * Post styles
-   * For the mdx blogs 
-   */
-  .prose {
-    @apply min-w-full pb-6 text-slate-900 dark:text-white;
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
   }
-  .anchor {
-    @apply absolute invisible no-underline;
-    margin-left: -1em;
-    padding-right: 0.5em;
-    cursor: pointer;
-  }
+}
 
-  .anchor:hover {
-    @apply visible;
-  }
-  .prose h1,
-  .prose h2,
-  .prose h3,
-  .prose h4,
-  .prose h5,
-  .prose h6,
-  .prose p {
-    @apply dark:text-white text-slate-900;
-  }
+/* Surface card used by posts and projects: glassy in dark mode, glows on hover */
+@utility card-surface {
+  @apply relative rounded-xl border border-slate-200 bg-white transition-all duration-300 dark:border-white/10 dark:bg-white/[0.04] dark:backdrop-blur-sm;
+}
 
-  .prose a {
-    @apply transition-all;
-  }
+@utility card-glow {
+  @apply hover:-translate-y-1 hover:border-sky-300 hover:shadow-xl hover:shadow-sky-500/10 dark:hover:border-sky-400/40 dark:hover:bg-white/[0.07] dark:hover:shadow-sky-400/10;
+}
 
-  .prose .anchor:after {
-    @apply text-gray-300 dark:text-gray-700;
-    content: '#';
-  }
+/* Cursor spotlight: a soft glow that follows the pointer over the card */
+.spotlight {
+  --spot-x: 50%;
+  --spot-y: 50%;
+}
 
-  .prose *:hover > .anchor {
-    @apply visible;
-  }
+.spotlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    520px circle at var(--spot-x) var(--spot-y),
+    color-mix(in oklab, var(--color-sky-500) 12%, transparent),
+    transparent 45%
+  );
+}
 
-  .prose pre {
-    @apply border border-gray-200 dark:border-gray-700;
-  }
+.dark .spotlight::after {
+  background: radial-gradient(
+    520px circle at var(--spot-x) var(--spot-y),
+    color-mix(in oklab, var(--color-sky-400) 16%, transparent),
+    transparent 45%
+  );
+}
 
-  .prose code {
-    @apply border border-gray-100 px-1 py-0.5 rounded-lg text-gray-800  dark:border-gray-800 dark:text-gray-200;
-  }
+.spotlight:hover::after {
+  opacity: 1;
+}
 
-  .prose pre code {
-    @apply p-0 text-gray-800 dark:text-gray-200;
-    border: initial;
-  }
+/* Subtle dotted grid for hero backgrounds */
+@utility bg-grid {
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--color-slate-400) 35%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
 
-  .prose img {
-    /* Don't apply styles to next/image */
-    @apply m-0;
-  }
+/* Animated gradient text */
+@utility text-gradient {
+  @apply bg-[length:200%_auto] bg-clip-text text-transparent;
+  background-image: linear-gradient(
+    90deg,
+    var(--color-slate-900) 0%,
+    var(--color-sky-600) 35%,
+    var(--color-violet-600) 50%,
+    var(--color-sky-600) 65%,
+    var(--color-slate-900) 100%
+  );
+}
 
-  .prose > :first-child {
-    /* Override removing top margin, causing layout shift */
-    margin-top: 1.25em !important;
-    margin-bottom: 1.25em !important;
-  }
+.dark .text-gradient {
+  background-image: linear-gradient(
+    90deg,
+    #fff 0%,
+    var(--color-sky-300) 35%,
+    var(--color-violet-300) 50%,
+    var(--color-sky-300) 65%,
+    #fff 100%
+  );
+}
 
-  /* Prism Styles */
-  .token.comment,
-  .token.prolog,
-  .token.doctype,
-  .token.cdata {
-    @apply text-gray-700 dark:text-gray-300;
-  }
+@utility layout {
+  @apply mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8;
+}
 
-  .token.punctuation {
-    @apply text-gray-700 dark:text-gray-300;
-  }
+@utility min-h-main {
+  min-height: calc(100vh - --spacing(16));
+}
 
-  .token.property,
-  .token.tag,
-  .token.boolean,
-  .token.number,
-  .token.constant,
-  .token.symbol,
-  .token.deleted {
-    @apply text-green-500;
-  }
+/* Post (MDX) styles.
+   Kept unlayered on purpose so they win over the typography plugin's
+   utilities regardless of specificity. */
+.prose {
+  max-width: none;
+}
 
-  .token.selector,
-  .token.attr-name,
-  .token.string,
-  .token.char,
-  .token.builtin,
-  .token.inserted {
-    @apply text-purple-500;
-  }
+.prose :is(h1, h2, h3, h4, h5, h6) > a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: inherit;
+}
 
-  .token.operator,
-  .token.entity,
-  .token.url,
-  .language-css .token.string,
-  .style .token.string {
-    @apply text-yellow-500;
-  }
+.prose :is(h2, h3, h4) > a:hover::after {
+  content: ' #';
+  color: var(--color-sky-500);
+}
 
-  .token.atrule,
-  .token.attr-value,
-  .token.keyword {
-    @apply text-blue-500;
-  }
+.prose :not(pre) > code {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-slate-200);
+  background-color: var(--color-slate-100);
+  padding: 0.125rem 0.375rem;
+  font-size: 0.875em;
+  font-weight: 400;
+  color: var(--color-slate-800);
+}
 
-  .token.function,
-  .token.class-name {
-    @apply text-pink-500;
-  }
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
+  content: none;
+}
 
-  .token.regex,
-  .token.important,
-  .token.variable {
-    @apply text-yellow-500;
-  }
+.dark .prose :not(pre) > code {
+  border-color: var(--color-slate-700);
+  background-color: var(--color-slate-800);
+  color: var(--color-slate-100);
+}
 
-  code[class*='language-'],
-  pre[class*='language-'] {
-    @apply font-mono p-4 text-gray-800 dark:text-gray-50;
-  }
+.prose pre {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-slate-200);
+  background-color: var(--color-slate-50);
+  padding: 1rem 0;
+}
 
-  pre::-webkit-scrollbar {
+.dark .prose pre {
+  border-color: var(--color-slate-800);
+  background-color: var(--color-slate-900);
+}
+
+.prose pre > code {
+  display: grid;
+  background: transparent;
+  padding: 0;
+  font-size: 0.875rem;
+  counter-reset: line;
+}
+
+.prose pre > code [data-line] {
+  border-left: 2px solid transparent;
+  padding: 0 1rem;
+}
+
+.prose pre > code [data-highlighted-line] {
+  border-left-color: var(--color-sky-500);
+  background-color: color-mix(in oklab, var(--color-sky-500) 10%, transparent);
+}
+
+[data-rehype-pretty-code-title] {
+  border: 1px solid var(--color-slate-200);
+  border-bottom: 0;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background-color: var(--color-slate-100);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-slate-600);
+}
+
+.dark [data-rehype-pretty-code-title] {
+  border-color: var(--color-slate-800);
+  background-color: var(--color-slate-800);
+  color: var(--color-slate-300);
+}
+
+[data-rehype-pretty-code-title] + pre {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* Shiki dual theme: light by default, dark under .dark */
+code[data-theme*=' '],
+code[data-theme*=' '] span {
+  color: var(--shiki-light);
+}
+
+.dark code[data-theme*=' '],
+.dark code[data-theme*=' '] span {
+  color: var(--shiki-dark);
+}
+
+/* Display face for the CV (Courier Prime is loaded per page via next/font) */
+@utility font-display {
+  font-family: var(--font-courier), var(--font-jetbrains-mono), monospace;
+}
+
+/* Typewriter sheet used by the CV page */
+.paper-stack {
+  position: relative;
+  isolation: isolate;
+}
+
+/* two sheets peeking out from under the top one */
+.paper-stack::before,
+.paper-stack::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 3px;
+  background-color: var(--color-paper);
+  border: 1px solid rgb(28 36 51 / 0.18);
+  box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.45);
+}
+
+@media (max-width: 639px) {
+  .paper-stack::before,
+  .paper-stack::after {
     display: none;
   }
+}
 
-  pre {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+.paper-stack::before {
+  transform: rotate(-1.2deg) translate(-4px, 6px);
+}
+
+.paper-stack::after {
+  transform: rotate(0.8deg) translate(5px, 3px);
+}
+
+.paper {
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid rgb(28 36 51 / 0.22);
+  background-color: var(--color-paper);
+  background-image:
+    /* two tri-fold creases */
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(33.3% - 1px),
+      rgb(0 0 0 / 0.05) calc(33.3% - 1px),
+      rgb(255 255 255 / 0.5) calc(33.3% + 1px),
+      transparent calc(33.3% + 2px),
+      transparent calc(66.6% - 1px),
+      rgb(0 0 0 / 0.05) calc(66.6% - 1px),
+      rgb(255 255 255 / 0.5) calc(66.6% + 1px),
+      transparent calc(66.6% + 2px)
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 20% 0%,
+      rgb(255 255 255 / 0.55),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 100% 60% at 100% 100%,
+      rgb(120 72 20 / 0.08),
+      transparent 60%
+    );
+  box-shadow:
+    inset 0 0 80px rgb(120 72 20 / 0.08),
+    0 1px 1px rgb(15 23 42 / 0.1),
+    0 4px 8px -2px rgb(15 23 42 / 0.15),
+    0 24px 48px -16px rgb(15 23 42 / 0.45);
+}
+
+.dark .paper {
+  box-shadow:
+    inset 0 0 80px rgb(120 72 20 / 0.1),
+    0 1px 1px rgb(0 0 0 / 0.5),
+    0 30px 80px -30px rgb(0 0 0 / 0.95);
+}
+
+/* paper grain */
+.paper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='240'%20height='240'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.85'%20numOctaves='4'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20values='0%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200%200.55%200'/%3E%3C/filter%3E%3Crect%20width='100%'%20height='100%'%20filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+}
+
+.paper > :not(.stamp):not(.dog-ear) {
+  position: relative;
+  z-index: 1;
+}
+
+/* while the sheet is folded into a plane, the under-sheets leave too */
+.paper-stack::before,
+.paper-stack::after {
+  transition: opacity 0.4s ease;
+}
+
+.paper-stack.is-flying::before,
+.paper-stack.is-flying::after {
+  opacity: 0;
+}
+
+/* typewriter "bold": overstrike instead of a heavier weight */
+.overstrike {
+  font-weight: 600;
+  text-shadow: 0.35px 0 currentColor;
+}
+
+/* CSS typewriter: the text is fully in the DOM; only the visible width animates */
+.typed {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  box-sizing: content-box;
+  width: 0;
+  border-right: 0.5em solid var(--color-ink);
+  animation:
+    type calc(var(--n) * 95ms) steps(var(--n)) var(--delay, 0.6s) forwards,
+    caret 0.53s steps(1) var(--delay, 0.6s) 6 forwards;
+}
+
+.typed-done,
+.typed-done.typed {
+  animation: none;
+  width: auto;
+  border-right-color: transparent;
+}
+
+@keyframes type {
+  to {
+    width: calc(var(--n) * 1ch);
   }
+}
 
-  .highlight-line {
-    @apply -mx-4 bg-gray-100 block border-blue-500 border-l-4 px-4 dark:bg-gray-800;
+@keyframes caret {
+  0%,
+  100% {
+    border-right-color: var(--color-ink);
+  }
+  50% {
+    border-right-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typed {
+    animation: none;
+    width: auto;
+    border-right-color: transparent;
+  }
+}
+
+.keycap,
+.keycap-sm {
+  display: inline-block;
+  border-radius: 6px;
+  border: 1px solid rgb(28 36 51 / 0.45);
+  border-bottom-width: 3px;
+  background-image: linear-gradient(to bottom, #fffdf8, #f1ebdd);
+  color: var(--color-ink);
+  font-weight: 600;
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.8) inset;
+  transition: transform 0.1s ease;
+}
+
+.keycap {
+  padding: 0.2rem 0.6rem;
+  font-size: 12.5px;
+  line-height: 1.5;
+  cursor: default;
+}
+
+.keycap:hover,
+.keycap:focus-visible {
+  transform: translateY(2px);
+  border-bottom-width: 1px;
+  margin-bottom: 2px;
+  outline: none;
+  border-color: var(--color-ribbon);
+}
+
+.keycap-sm {
+  padding: 0 0.4rem;
+  font-size: 10px;
+  line-height: 1.6;
+  font-family: var(--font-mono);
+}
+
+.stamp {
+  display: inline-block;
+  border: 2px double rgb(179 38 30 / 0.75);
+  border-radius: 6px;
+  padding: 0.3rem 0.8rem;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgb(179 38 30 / 0.85);
+  mix-blend-mode: multiply;
+  transform: rotate(-8deg);
+}
+
+/* Cover slip (?to=Company): a torn scrap of paper above the sheet */
+.slip {
+  background-color: var(--color-paper);
+  border: 1px solid rgb(28 36 51 / 0.2);
+  box-shadow: 0 6px 16px -8px rgb(0 0 0 / 0.4);
+  clip-path: polygon(
+    0 4%,
+    3% 0,
+    97% 2%,
+    100% 6%,
+    99% 96%,
+    96% 100%,
+    4% 98%,
+    0 94%
+  );
+}
+
+/* Index card taped to the sheet */
+.index-card {
+  position: relative;
+  border-radius: 2px;
+  border: 1px solid rgb(28 36 51 / 0.18);
+  background-color: #fffdf7;
+  background-image: repeating-linear-gradient(
+    transparent 0,
+    transparent 19px,
+    rgb(28 36 51 / 0.05) 19px,
+    rgb(28 36 51 / 0.05) 20px
+  );
+  background-position: 0 0.9rem;
+  padding: 0.9rem 1rem 0.8rem;
+  box-shadow: 0 6px 14px -8px rgb(0 0 0 / 0.35);
+  transform: rotate(-1.5deg);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s;
+}
+
+.index-card:hover {
+  transform: rotate(0deg);
+  box-shadow: 0 2px 6px -4px rgb(0 0 0 / 0.3);
+}
+
+.tape {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 84px;
+  height: 22px;
+  transform: translateX(-50%) rotate(-3deg);
+  background: rgb(255 214 130 / 0.55);
+  border-left: 1px dashed rgb(255 255 255 / 0.6);
+  border-right: 1px dashed rgb(255 255 255 / 0.6);
+  mix-blend-mode: multiply;
+}
+
+/* Desk lamp: warm light pool following the pointer (desk only, not the sheet) */
+.desk-lamp {
+  --lx: 50%;
+  --ly: 20%;
+  background: radial-gradient(
+    560px circle at var(--lx) var(--ly),
+    rgb(255 214 150 / 0.16),
+    transparent 70%
+  );
+}
+
+.dark .desk-lamp {
+  background: radial-gradient(
+    560px circle at var(--lx) var(--ly),
+    rgb(255 200 120 / 0.14),
+    transparent 70%
+  );
+}
+
+/* Sheet lifts out of the machine right before printing */
+[data-printing] .paper-stack {
+  transform: translateY(-24px);
+  transition: transform 0.2s ease-in;
+}
+
+/* Dog-ear corner that folds the sheet into a paper plane */
+.dog-ear {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 44px;
+  height: 44px;
+  z-index: 2;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  border-radius: 0 0 3px 0;
+  background:
+    linear-gradient(
+      to top left,
+      var(--color-background) 0 50%,
+      transparent 50%
+    ),
+    linear-gradient(
+      to top left,
+      transparent 0 50%,
+      rgb(28 36 51 / 0.12) 50%,
+      #fffdf7 54%,
+      var(--color-paper) 100%
+    );
+  filter: drop-shadow(-2px -2px 3px rgb(0 0 0 / 0.15));
+  transition:
+    width 0.25s ease,
+    height 0.25s ease;
+}
+
+.dog-ear:hover,
+.dog-ear:focus-visible {
+  width: 64px;
+  height: 64px;
+}
+
+/* On-brand focus ring inside the CV */
+.cv :focus-visible {
+  outline: 2px solid var(--color-ribbon);
+  outline-offset: 3px;
+}
+
+/* Print: plain white page, no chrome */
+@media print {
+  html,
+  html.dark {
+    /* next-themes sets color-scheme inline; force a light canvas */
+    color-scheme: light !important;
+    background: #fff !important;
+  }
+  body,
+  .dark body {
+    background: #fff !important;
+    background-image: none !important;
+    color: #0f172a !important;
+  }
+  .layout {
+    max-width: none;
+    padding: 0;
+  }
+  @page {
+    size: A4;
+    margin: 10mm 12mm;
+    @bottom-right {
+      content: counter(page) ' / ' counter(pages);
+      font-family: var(--font-jetbrains-mono), monospace;
+      font-size: 9px;
+      color: #64748b;
+    }
+  }
+  /* Everything visible, no leftover animation state */
+  *,
+  *::before,
+  *::after {
+    opacity: 1 !important;
+    animation: none !important;
+    transition: none !important;
+    clip-path: none !important;
+  }
+  *:not(.stamp),
+  *:not(.stamp)::before,
+  *:not(.stamp)::after {
+    transform: none !important;
+  }
+  .typed {
+    width: auto !important;
+    border-right-color: transparent !important;
+  }
+  /* keep screen-reader-only text hidden despite the clip-path reset above */
+  .sr-only {
+    clip-path: inset(50%) !important;
+  }
+  .stamp {
+    transform: rotate(-8deg) !important;
+  }
+  .paper,
+  .dark .paper {
+    border: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    padding: 0 !important;
+  }
+  .paper::before,
+  .paper-stack::before,
+  .paper-stack::after,
+  .tape,
+  .slip,
+  .desk-lamp {
+    display: none !important;
+  }
+  .index-card {
+    box-shadow: none;
+    background-image: none;
+    border-color: #cbd5e1;
+    transform: none !important;
+  }
+  /* text-shadow would duplicate glyphs in the PDF text layer */
+  .overstrike {
+    text-shadow: none;
+    font-weight: 700;
+  }
+  .keycap,
+  .stamp,
+  .text-ribbon,
+  .border-ribbon {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .keycap {
+    background: #fff;
+    border-bottom-width: 1px;
+  }
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+  /* entries may flow across pages, but never split a bullet or an aside block */
+  article {
+    break-inside: auto;
+  }
+  article li,
+  aside section,
+  .cv footer {
+    break-inside: avoid;
+  }
+  .cv .paper {
+    font-size: 13px;
+  }
+  p,
+  li {
+    orphans: 3;
+    widows: 3;
   }
 }

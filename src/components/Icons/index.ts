@@ -1,1 +1,1 @@
-export { default as CirclePlus } from './CirclePlus';
+export { default as GrommetIconsGithub } from './GrommetIconsGithub';
